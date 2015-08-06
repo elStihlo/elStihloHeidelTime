@@ -61,6 +61,7 @@ public class TreeTaggerWrapper extends JCasAnnotator_ImplBase {
 	// local treetagger properties container, see below
 	private TreeTaggerProperties ttprops = new TreeTaggerProperties();
 	
+	
 	/**
 	 * uimacontext to make secondary initialize() method possible.
 	 * -> programmatic, non-uima pipeline usage.
@@ -144,7 +145,15 @@ public class TreeTaggerWrapper extends JCasAnnotator_ImplBase {
 		// set some configuration based upon these values
 		ttprops.languageName = language.getTreeTaggerLangName();
 		if(ttprops.rootPath == null)
-			ttprops.rootPath = System.getenv("TREETAGGER_HOME");
+			
+			//Hier ist Testgelaende!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			
+			//ttprops.rootPath = System.getenv("TREETAGGER_HOME");
+			
+			
+			ttprops.rootPath = "C:/Program Files (x86)/TreeTagger";
+		
+		
 		ttprops.tokScriptName = "utf8-tokenize.perl";
 		
 		// parameter file
