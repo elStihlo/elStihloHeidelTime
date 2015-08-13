@@ -5,7 +5,7 @@
  * All rights reserved. This program and the accompanying materials 
  * are made available under the terms of the GNU General Public License.
  * 
- * author: Jannik Strötgen
+ * author: Jannik StrÃ¶tgen
  * email:  stroetgen@uni-hd.de
  * 
  * HeidelTime is a multilingual, cross-domain temporal tagger.
@@ -73,9 +73,9 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 	private int timexID = 0;
 	
 	// INPUT PARAMETER HANDLING WITH UIMA
-	private String PARAM_LANGUAGE         = "Language";
+	public static String PARAM_LANGUAGE         = "Language";
 	// supported languages (2012-05-19): english, german, dutch, englishcoll, englishsci
-	private String PARAM_TYPE_TO_PROCESS  = "Type";
+	public static String PARAM_TYPE_TO_PROCESS  = "Type";
 	// chosen locale parameter name
 	private String PARAM_LOCALE			   = "locale";
 	// supported types (2012-05-19): news (english, german, dutch), narrative (english, german, dutch), colloquial
@@ -83,10 +83,10 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 	private String typeToProcess  = "news";
 	
 	// INPUT PARAMETER HANDLING WITH UIMA (which types shall be extracted)
-	private String PARAM_DATE      = "Date";
-	private String PARAM_TIME      = "Time";
-	private String PARAM_DURATION  = "Duration";
-	private String PARAM_SET       = "Set";
+	public static String PARAM_DATE      = "Date";
+	public static String PARAM_TIME      = "Time";
+	public static String PARAM_DURATION  = "Duration";
+	public static String PARAM_SET       = "Set";
 	private String PARAM_DEBUG	   = "Debugging";
 	private String PARAM_GROUP     = "ConvertDurations";
 	private Boolean find_dates     = true;
@@ -2330,16 +2330,16 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 			Pattern paChineseNorm = Pattern.compile("%CHINESENUMBERS%\\((.*?)\\)");
 			for (MatchResult mr : Toolbox.findMatches(paChineseNorm, tonormalize)) {
 				RegexHashMap<String> chineseNumerals = new RegexHashMap<String>();
-				chineseNumerals.put("[零０0]", "0");
-				chineseNumerals.put("[一１1]", "1");
-				chineseNumerals.put("[二２2]", "2");
-				chineseNumerals.put("[三３3]", "3");
-				chineseNumerals.put("[四４4]", "4");
-				chineseNumerals.put("[五５5]", "5");
-				chineseNumerals.put("[六６6]", "6");
-				chineseNumerals.put("[七７7]", "7");
-				chineseNumerals.put("[八８8]", "8");
-				chineseNumerals.put("[九９9]", "9");
+				chineseNumerals.put("[é›¶ï¼�0]", "0");
+				chineseNumerals.put("[ä¸€ï¼‘1]", "1");
+				chineseNumerals.put("[äºŒï¼’2]", "2");
+				chineseNumerals.put("[ä¸‰ï¼“3]", "3");
+				chineseNumerals.put("[å››ï¼”4]", "4");
+				chineseNumerals.put("[äº”ï¼•5]", "5");
+				chineseNumerals.put("[å…­ï¼–6]", "6");
+				chineseNumerals.put("[ä¸ƒï¼—7]", "7");
+				chineseNumerals.put("[å…«ï¼˜8]", "8");
+				chineseNumerals.put("[ä¹�ï¼™9]", "9");
 				String outString = "";
 				for(Integer i = 0; i < mr.group(1).length(); i++) {
 					String thisChar = mr.group(1).substring(i, i+1);
