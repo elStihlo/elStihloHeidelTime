@@ -86,7 +86,7 @@
   		</dependency>
   	</dependencies>
   </dependencyManagement>
-  <dependencies>
+   <dependencies>
   	<dependency>
   		<groupId>org.apache.uima</groupId>
   		<artifactId>uimaj-core</artifactId>
@@ -110,6 +110,25 @@
   		<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
   		<artifactId>
   			de.tudarmstadt.ukp.dkpro.core.tokit-asl
+  		</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+  		<artifactId>
+  			de.tudarmstadt.ukp.dkpro.core.arktools-gpl
+  		</artifactId>
+  		<version>1.7.0</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+  		<artifactId>
+  			de.tudarmstadt.ukp.dkpro.core.treetagger-asl
+  		</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+  		<artifactId>
+  			de.tudarmstadt.ukp.dkpro.core.opennlp-asl
   		</artifactId>
   	</dependency>
   	<dependency>

@@ -177,7 +177,7 @@ public class ACETernReader extends CollectionReader_ImplBase {
 		String dateformat7 = "(.*?)(January|February|March|April|May|June|July|August|September|October|November|December) ([\\d]?[\\d]),? (\\d\\d\\d\\d)(.*?)";
 		String dateformat8 = "(.*?)(\\d\\d\\d\\d)(\\d\\d)(\\d\\d)-(\\d\\d):(\\d\\d):(\\d\\d)(.*?)"; // 20041221-20:24:00
 		String dateformat9 = "(.*?)(\\d\\d\\d\\d)(\\d\\d)(\\d\\d)(.*?)"; // 20030422
-		for (MatchResult m : findMatches(Pattern.compile("(<DATETIME>|<DATE_TIME>|<DATE>|<STORY_REF_TIME>)(("+dateformat1+
+		for (MatchResult m : findMatches(Pattern.compile("(<DATETIME>|<DATE_TIME>|<DATE>|<STORY_REF_TIME>|<DCT>)(("+dateformat1+
 																						")|("+dateformat2+
 																						")|("+dateformat3+
 																						")|("+dateformat4+
@@ -185,7 +185,7 @@ public class ACETernReader extends CollectionReader_ImplBase {
 																						")|("+dateformat6+
 																						")|("+dateformat7+
 																						")|("+dateformat8+
-																						")|("+dateformat9+")(</DATETIME>|</DATE_TIME>|</DATE>|</STORY_REF_TIME>))"), xml)){
+																						")|("+dateformat9+")(</DATETIME>|</DATE_TIME>|</DATE>|</STORY_REF_TIME>|<DCT>))"), xml)){
 			datetimetag = m.group(2);
 		}
 		

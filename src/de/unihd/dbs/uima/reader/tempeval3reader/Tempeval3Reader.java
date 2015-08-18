@@ -39,7 +39,7 @@ public class Tempeval3Reader extends CollectionReader_ImplBase {
 	
 	// uima descriptor parameter name
 	
-	private String PARAM_INPUTDIR = "InputDirectory";
+	public static String PARAM_INPUTDIR = "InputDirectory";
 	
 	private Integer numberOfDocuments = 0;
 	
