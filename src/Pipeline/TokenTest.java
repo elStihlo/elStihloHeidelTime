@@ -30,7 +30,8 @@ public class TokenTest
         
         Collection<Sentence> sentence = JCasUtil.select(jcas, Sentence.class);
         for (Sentence satz : sentence){
-        System.out.println("Satz " + nr++ + satz );
+        	nr++;
+        System.out.println("Satz " + nr + " " + satz );
         
         }
        

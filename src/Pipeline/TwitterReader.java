@@ -17,12 +17,14 @@ import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.uima.UimaContext;
 import org.apache.uima.collection.CollectionException;
 import org.apache.uima.fit.descriptor.ConfigurationParameter;
+import org.apache.uima.fit.util.JCasUtil;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.util.Progress;
 
 import TwitterReader.type.RawTweet;
 import de.tudarmstadt.ukp.dkpro.core.api.io.JCasResourceCollectionReader_ImplBase;
+import de.unihd.dbs.uima.types.heideltime.Dct;
 
 
 
@@ -199,9 +201,55 @@ public class TwitterReader extends JCasResourceCollectionReader_ImplBase{
         //unescaping makes the unicode characters (\\uXXXX) readable
         jCas.setDocumentText(StringEscapeUtils.unescapeJava(extract));
         jCas.setDocumentLanguage("x-unspecified");
+        
+        //
+        //Get DCT for further processing of HeidelTime
+        //
+        setDCT(jCas);
+        
+        
+    }
+    
+    
+    //
+    //Extracts the DCT from the RawTweet and converts it into the right format, which is needed by HeidelTime
+    //
+    public void setDCT(JCas jcas){
+    	String rawTweet = getRawTweet(jcas);
+    	boolean ctime = rawTweet.contains("created_at\":");
+        String creationTime = "";
+        if (ctime){
+        	creationTime = rawTweet.split("created_at\":")[1];
+        	if(creationTime.contains(",\"")){
+        	creationTime = creationTime.split(",\"")[0];
+        	}
+        }
+        
+        String id = rawTweet.split("id\":")[1];
+        
+        String time_value;
+		//String date_value;
+		
+		String month = normMonth(creationTime.split(" ")[1]);
+		String day = creationTime.split(" ")[2];
+		String year = creationTime.split(" ")[5];
+		year = year.split("\"")[0];
+		String time = creationTime.split(" ")[3];
+        time_value = year + "-" + month + "-" + day + "T0" + time;
+        //date_value = year + "-" + month + "-" + day;
+        
+        Dct dct = new Dct(jcas);
+        dct.setBegin(0);
+        dct.setEnd(1);
+        dct.setFilename("TweetID: " +id);
+        dct.setTimexId("dct");
+        dct.setValue(time_value);
+        dct.addToIndexes();
     }
 
-    static String getExtract(String rawText, final String START, final String END)
+    
+
+	static String getExtract(String rawText, final String START, final String END)
     {
         int idxStart = rawText.indexOf(START);
         int idxEnd = rawText.indexOf(END, idxStart + START.length());
@@ -215,6 +263,59 @@ public class TwitterReader extends JCasResourceCollectionReader_ImplBase{
         String extract = rawText.substring(idxStart + START.length(), idxEnd);
         return extract;
     }
+	
+	private String getRawTweet(JCas aJCas)
+    {
+        // Note: The raw type contains the tweet in the JSON format with all information Twitter
+        // provides. Look into the Twitter API description to find details of what information is
+        // basically provided. Be aware that not every information is set in every message.
+        // Furthermore, the data contain a random mix of languages. You have to find a ways how to
+        // recognize the languages you want to use for your project!
+
+        RawTweet raw = JCasUtil.selectSingle(aJCas, RawTweet.class);
+        String rawTweet = raw.getRawTweet();
+        return rawTweet;
+    }
+	
+	public String normMonth(String month){
+		if (month.toLowerCase().startsWith("jan")){
+			month = "01";
+		}
+		else if (month.toLowerCase().startsWith("feb")){
+			month = "02";
+		}
+		else if (month.toLowerCase().startsWith("mar")){
+			month = "03";
+		}
+		else if (month.toLowerCase().startsWith("apr")){
+			month = "04";
+		}
+		else if (month.toLowerCase().startsWith("may")){
+			month = "05";
+		}
+		else if (month.toLowerCase().startsWith("jun")){
+			month = "06";
+		}
+		else if (month.toLowerCase().startsWith("jul")){
+			month = "07";
+		}
+		else if (month.toLowerCase().startsWith("aug")){
+			month = "08";
+		}
+		else if (month.toLowerCase().startsWith("sep")){
+			month = "09";
+		}
+		else if (month.toLowerCase().startsWith("oct")){
+			month = "10";
+		}
+		else if (month.toLowerCase().startsWith("nov")){
+			month = "11";
+		}
+		else if (month.toLowerCase().startsWith("dec")){
+			month = "12";
+		}
+		return month;
+	}
 
     private static void logWarn(String message)
     {

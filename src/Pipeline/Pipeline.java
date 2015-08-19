@@ -1,10 +1,14 @@
 package Pipeline;
 
+import org.apache.uima.UIMAFramework;
 import org.apache.uima.analysis_engine.AnalysisEngineDescription;
+import org.apache.uima.collection.CasConsumer;
+import org.apache.uima.collection.CasConsumerDescription;
 import org.apache.uima.collection.CollectionReaderDescription;
 import org.apache.uima.fit.factory.AnalysisEngineFactory;
 import org.apache.uima.fit.factory.CollectionReaderFactory;
 import org.apache.uima.fit.pipeline.SimplePipeline;
+import org.apache.uima.impl.CasConsumerFactory_impl;
 
 import de.tudarmstadt.ukp.dkpro.core.tokit.BreakIteratorSegmenter;
 import de.tudarmstadt.ukp.dkpro.core.treetagger.TreeTaggerPosTagger;
@@ -13,6 +17,7 @@ import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpSegmenter;
 import de.unihd.dbs.uima.annotator.annotationtranslator.AnnotationTranslator;
 import de.unihd.dbs.uima.annotator.heideltime.HeidelTime;
 import de.unihd.dbs.uima.annotator.treetagger.TreeTaggerWrapper;
+import de.unihd.dbs.uima.consumer.aceternwriter.ACETernWriter;
 import de.unihd.dbs.uima.reader.aceternreader.ACETernReader;
 import de.unihd.dbs.uima.reader.tempeval3reader.Tempeval3Reader;
 
@@ -38,8 +43,8 @@ public class Pipeline {
                 TwitterReader.class, TwitterReader.PARAM_SOURCE_LOCATION, inputFolder,
                 TwitterReader.PARAM_PATTERNS, new String[] { "*.gz", "*.bz2", "*.json" });
         
-        /*AnalysisEngineDescription tokenizer = AnalysisEngineFactory
-                .createEngineDescription(ArktweetTokenizer.class);*/
+        AnalysisEngineDescription tokenizer = AnalysisEngineFactory
+                .createEngineDescription(ArktweetTokenizer.class);
 		
 		 /*AnalysisEngineDescription segmenter = AnalysisEngineFactory
 	                .createEngineDescription(BreakIteratorSegmenter.class);*/
@@ -47,8 +52,8 @@ public class Pipeline {
 		 /*AnalysisEngineDescription segmenter = AnalysisEngineFactory
 	                .createEngineDescription(OpenNlpSegmenter.class);*/
 		 
-		 /*AnalysisEngineDescription tokenTest = AnalysisEngineFactory
-				 .createEngineDescription(TokenTest.class);*/
+		 AnalysisEngineDescription tokenTest = AnalysisEngineFactory
+				 .createEngineDescription(TokenTest.class);
 		 
 		/* AnalysisEngineDescription dkProTreeTaggerPosTagger = AnalysisEngineFactory
 				 .createEngineDescription(TreeTaggerPosTagger.class);*/
@@ -71,12 +76,14 @@ public class Pipeline {
 		 AnalysisEngineDescription heidelTime = AnalysisEngineFactory
 	                .createEngineDescription(HeidelTime.class, HeidelTime.PARAM_LANGUAGE, "english", HeidelTime.PARAM_DATE, true,
 	                		HeidelTime.PARAM_DURATION, true, HeidelTime.PARAM_SET, true, HeidelTime.PARAM_TIME, true,
-	                		HeidelTime.PARAM_TYPE_TO_PROCESS, "colloquial");
+	                		HeidelTime.PARAM_TYPE_TO_PROCESS, "colloquial", HeidelTime.PARAM_DEBUG, true, HeidelTime.PARAM_GROUP, true);
 		 
-		 
+		 AnalysisEngineDescription writer = AnalysisEngineFactory
+				 .createEngineDescription(TwitterWriter.class);
 		
 		
-		SimplePipeline.runPipeline(reader, treeTagger, heidelTime);
+		
+		SimplePipeline.runPipeline(reader, treeTagger, heidelTime, writer);
 		 //SimplePipeline.runPipeline(reader, segmenter, translator);
 		//SimplePipeline.runPipeline(reader, tokenizer, tokenTest);
 		
