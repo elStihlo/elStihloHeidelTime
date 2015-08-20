@@ -7,9 +7,15 @@
 [Hh]eute
 [Mm]orgen
 [Jj]etzt
+[Gg]erade
+[Gg]rad
 [Ss]o bald wie mÃ¶glich
 [Bb]ald
 [Kk]Ã¼rzlich
 [Dd]erzeit
+[Zz]urzeit
 [Gg]egenwÃ¤rtig
 [Hh]eutzutage
+[Vv]orgestern
+[Üü]bermorgen
+[Nn]un

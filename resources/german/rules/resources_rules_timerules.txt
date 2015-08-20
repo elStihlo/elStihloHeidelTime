@@ -42,9 +42,11 @@ RULENAME="time_r2d",EXTRACTION="%reDateWord %rePartOfDay",NORM_VALUE="%normDateW
 // EXAMPLE r3a_1: 14:30 Uhr
 // EXAMPLE r3b_1: 14 Uhr 30
 // EXAMPLE r3c_1: 15 Uhr
+// EXAMPLE r3c2_1: 15.15 Uhr
 RULENAME="time_r3a",EXTRACTION="(%reApproximate )?%reTimeHour:%reTimeMinute( Uhr)?",NORM_VALUE="UNDEF-this-dayT%normDay(group(3)):group(4)"
 RULENAME="time_r3b",EXTRACTION="(%reApproximate )?%reTimeHour (Uhr) %reTimeMinute",NORM_VALUE="UNDEF-this-dayT%normDay(group(3)):group(5)"
 RULENAME="time_r3c",EXTRACTION="(%reApproximate )?%reTimeHour Uhr",NORM_VALUE="UNDEF-this-dayT%normDay(group(3)):00"
+RULENAME="time_r3c2",EXTRACTION="(%reApproximate )?%reTimeHour[\.]%reTimeMinute( Uhr)?",NORM_VALUE="UNDEF-this-dayT%normDay(group(3)):group(4)"
 
 RULENAME="time_r3d1",EXTRACTION="(%reApproximate )?%reTimeHourWord Uhr( morgens)?",NORM_VALUE="UNDEF-this-dayT%normDay(group(3)):00"
 RULENAME="time_r3d2",EXTRACTION="(%reApproximate )?%reTimeHourWord Uhr (abends|nachmittags)",NORM_VALUE="UNDEF-this-dayT%SUM%(%normDay(group(3)),12):00"

@@ -2,44 +2,42 @@ package Pipeline;
 
 import java.util.Collection;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
-import org.apache.uima.cas.FSIndex;
-import org.apache.uima.cas.FSIterator;
 import org.apache.uima.fit.component.JCasAnnotator_ImplBase;
 import org.apache.uima.fit.util.JCasUtil;
 import org.apache.uima.jcas.JCas;
 
 import de.unihd.dbs.uima.types.heideltime.Dct;
-import de.unihd.dbs.uima.types.heideltime.Event;
 import de.unihd.dbs.uima.types.heideltime.Timex3;
 
 public class TwitterWriter extends JCasAnnotator_ImplBase{
 
-	private boolean printDetails = false;
 	
+	private int numberOfDocuments = 0;
 	
 	
 	@Override
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
 		
+		numberOfDocuments++;
+		String rawTweet = aJCas.getDocumentText();
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		System.out.println("Message: " + rawTweet);
 		
 		Collection<Dct> dct = JCasUtil.select(aJCas, Dct.class );
 		for (Dct dCT : dct){
 			System.out.println("DCTValue: " + dCT.getValue());
-			System.out.println("DCTText: " + dCT.getCoveredText());
 		}
 		
 		Collection<Timex3> timex = JCasUtil.select(aJCas, Timex3.class);
 		for (Timex3 timex3 : timex){
 			System.out.println(" Timex3 Value: " + timex3.getTimexValue());
+			System.out.println(" Timex3Text: " + timex3.getCoveredText());
 		}
 		
 		
-		Collection<Event> ev = JCasUtil.select(aJCas, Event.class);
-		for (Event event : ev){
-			System.out.println(" EventID: " + event.getEventId());
-		}
-		
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		//printTimexAnnotationsInline(aJCas);
 	}
 	
@@ -93,6 +91,7 @@ public class TwitterWriter extends JCasAnnotator_ImplBase{
 	    {
 	        super.collectionProcessComplete();
 	        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+	        System.out.println("Number of Tweets: "  + numberOfDocuments);
 	        System.out.println("Writer hat auch was gemacht!!!");
 	        
 	        
