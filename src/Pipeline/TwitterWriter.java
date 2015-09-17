@@ -1,5 +1,8 @@
 package Pipeline;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.Collection;
 
 import org.apache.commons.lang.StringEscapeUtils;
@@ -8,6 +11,7 @@ import org.apache.uima.fit.component.JCasAnnotator_ImplBase;
 import org.apache.uima.fit.util.JCasUtil;
 import org.apache.uima.jcas.JCas;
 
+import de.unidue.langtech.teaching.ba.type.Timex3Gold;
 import de.unihd.dbs.uima.types.heideltime.Dct;
 import de.unihd.dbs.uima.types.heideltime.Timex3;
 
@@ -15,25 +19,54 @@ public class TwitterWriter extends JCasAnnotator_ImplBase{
 
 	
 	private int numberOfDocuments = 0;
-	
+	//int count = 0;
 	
 	@Override
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
 		
 		numberOfDocuments++;
+		//count++;
 		String rawTweet = aJCas.getDocumentText();
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		System.out.println("Message: " + rawTweet);
+		
+		/*String filename = "F:/Uni/BachelorArbeit/TweetsMitTimeX/TrainingTweets/EinzelTweetsTraining/TrainingTweetGER" + count + ".tml"; 
+        try 
+        {
+            FileOutputStream fos = new FileOutputStream (filename);
+            //GZIPOutputStream gzip = new GZIPOutputStream(fos);
+            OutputStreamWriter fw = new OutputStreamWriter(fos);
+            	fw.write(rawTweet);
+            	//fw.append(System.getProperty("/n"));
+            	fw.flush();
+            	fw.close();
+            }catch ( IOException e ) {
+            	  System.err.println( "Konnte Datei nicht erstellen" );
+            }*/
+		
+		
+		
+		
 		
 		Collection<Dct> dct = JCasUtil.select(aJCas, Dct.class );
 		for (Dct dCT : dct){
 			System.out.println("DCTValue: " + dCT.getValue());
 		}
 		
+		Collection<Timex3Gold> gold = JCasUtil.select(aJCas, Timex3Gold.class);
 		Collection<Timex3> timex = JCasUtil.select(aJCas, Timex3.class);
 		for (Timex3 timex3 : timex){
 			System.out.println(" Timex3 Value: " + timex3.getTimexValue());
 			System.out.println(" Timex3Text: " + timex3.getCoveredText());
+			System.out.println(" Timex3Type: " + timex3.getTimexType());
+			System.out.println(" Timex3ID: " + timex3.getTimexId());			
+		}
+		for (Timex3Gold go : gold){
+			System.out.println(" GoldValue: " + go.getValue());
+			System.out.println(" GoldText: " + go.getTimex3Text());
+			System.out.println(" GoldType: " + go.getTimex3type());
+			System.out.println(" GoldID: " + go.getTID());
+			System.out.println("- - - - - - - - - - - - -");
 		}
 		
 		

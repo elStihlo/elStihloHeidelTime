@@ -24,10 +24,18 @@ public class Pipeline {
 
 	public static void main(String args[]) throws Exception{
 		
-		String inputFolder = "Test/TwitterData";
+		//String inputFolder = "Test/TwitterData";
+		
+		CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
+                BA_TwitterReader.class, BA_TwitterReader.PARAM_INPUTDIR, "F:/Uni/BachelorArbeit/TweetsMitTimeX/TrainingTweets/EinzelTweetsTraining",
+                ACETernReader.PARAM_DCT, true);
 		
 		/*CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
-                ACETernReader.class, ACETernReader.PARAM_INPUTDIR, "Test/TimebankOnly4", ACETernReader.PARAM_DCT, true);*/
+                BA_TwitterReader.class, BA_TwitterReader.PARAM_INPUTDIR, "F:/Uni/BachelorArbeit/TweetsMitTimeX/TrainingTweets/Malformed",
+                ACETernReader.PARAM_DCT, true);*/
+		
+		/*CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
+                ACETernReader.class, ACETernReader.PARAM_INPUTDIR, "Test/Tempeval3", ACETernReader.PARAM_DCT, true);*/
 		
 		/*CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
                 Tempeval2Reader.class, Tempeval2Reader.PARAM_INPUTDIR, "Test/Timebank");
@@ -37,12 +45,12 @@ public class Pipeline {
                 Tempeval3Reader.class, Tempeval3Reader.PARAM_INPUTDIR, "Test/Tempeval3");*/
 		
 		// Read all files with file ending *.gz, *.bz2 or *.json that are located in the inputFolder
-        CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
+        /*CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
                 TwitterReader.class, TwitterReader.PARAM_SOURCE_LOCATION, inputFolder,
                 TwitterReader.PARAM_PATTERNS, new String[] { "*.gz", "*.bz2", "*.json" });
-        
-        AnalysisEngineDescription tokenizer = AnalysisEngineFactory
-                .createEngineDescription(ArktweetTokenizer.class);
+        */
+        /*AnalysisEngineDescription tokenizer = AnalysisEngineFactory
+                .createEngineDescription(ArktweetTokenizer.class);*/
 		
 		 /*AnalysisEngineDescription segmenter = AnalysisEngineFactory
 	                .createEngineDescription(BreakIteratorSegmenter.class);*/
@@ -50,8 +58,8 @@ public class Pipeline {
 		 /*AnalysisEngineDescription segmenter = AnalysisEngineFactory
 	                .createEngineDescription(OpenNlpSegmenter.class);*/
 		 
-		 AnalysisEngineDescription tokenTest = AnalysisEngineFactory
-				 .createEngineDescription(TokenTest.class);
+		/* AnalysisEngineDescription tokenTest = AnalysisEngineFactory
+				 .createEngineDescription(TokenTest.class);*/
 		 
 		/* AnalysisEngineDescription dkProTreeTaggerPosTagger = AnalysisEngineFactory
 				 .createEngineDescription(TreeTaggerPosTagger.class);*/
@@ -71,6 +79,11 @@ public class Pipeline {
 	                		TreeTaggerWrapper.PARAM_LANGUAGE, "german", TreeTaggerWrapper.PARAM_ANNOTATE_TOKENS, true,
 	                		TreeTaggerWrapper.PARAM_ANNOTATE_SENTENCES, true, TreeTaggerWrapper.PARAM_IMPROVE_GERMAN_SENTENCES, true);
 		 
+		 /*AnalysisEngineDescription treeTagger = AnalysisEngineFactory
+	                .createEngineDescription(TreeTaggerWrapper.class, TreeTaggerWrapper.PARAM_ANNOTATE_PARTOFSPEECH, true,
+	                		TreeTaggerWrapper.PARAM_LANGUAGE, "english", TreeTaggerWrapper.PARAM_ANNOTATE_TOKENS, true,
+	                		TreeTaggerWrapper.PARAM_ANNOTATE_SENTENCES, true, TreeTaggerWrapper.PARAM_IMPROVE_GERMAN_SENTENCES, false);*/
+		 
 		 AnalysisEngineDescription heidelTime = AnalysisEngineFactory
 	                .createEngineDescription(HeidelTime.class, HeidelTime.PARAM_LANGUAGE, "german", HeidelTime.PARAM_DATE, true,
 	                		HeidelTime.PARAM_DURATION, true, HeidelTime.PARAM_SET, true, HeidelTime.PARAM_TIME, true,
@@ -80,7 +93,7 @@ public class Pipeline {
 				 .createEngineDescription(TwitterWriter.class);
 		
 		
-		
+		//SimplePipeline.runPipeline(reader, writer);
 		SimplePipeline.runPipeline(reader, treeTagger, heidelTime, writer);
 		 //SimplePipeline.runPipeline(reader, segmenter, translator);
 		//SimplePipeline.runPipeline(reader, tokenizer, tokenTest);

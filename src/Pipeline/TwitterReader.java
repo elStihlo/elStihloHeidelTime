@@ -235,7 +235,9 @@ public class TwitterReader extends JCasResourceCollectionReader_ImplBase{
 		String year = creationTime.split(" ")[5];
 		year = year.split("\"")[0];
 		String time = creationTime.split(" ")[3];
-        time_value = year + "-" + month + "-" + day + "T0" + time;
+		String t = "T";
+		if (time.split(":")[0].length()!=2){t = "T0"; }
+        time_value = year + "-" + month + "-" + day + t + time;
         //date_value = year + "-" + month + "-" + day;
         
         Dct dct = new Dct(jcas);
