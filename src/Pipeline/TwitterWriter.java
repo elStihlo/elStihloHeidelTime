@@ -20,6 +20,12 @@ public class TwitterWriter extends JCasAnnotator_ImplBase{
 	
 	private int numberOfDocuments = 0;
 	//int count = 0;
+	int correct = 0;
+	int allcorrect = 0;
+	int nrTimes = 0;
+	int nrGoldTimes = 0;
+	int overall = 0;
+	
 	
 	@Override
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
@@ -55,21 +61,62 @@ public class TwitterWriter extends JCasAnnotator_ImplBase{
 		
 		Collection<Timex3Gold> gold = JCasUtil.select(aJCas, Timex3Gold.class);
 		Collection<Timex3> timex = JCasUtil.select(aJCas, Timex3.class);
+		
+		nrTimes = 0;
 		for (Timex3 timex3 : timex){
+			nrTimes++;
 			System.out.println(" Timex3 Value: " + timex3.getTimexValue());
 			System.out.println(" Timex3Text: " + timex3.getCoveredText());
 			System.out.println(" Timex3Type: " + timex3.getTimexType());
 			System.out.println(" Timex3ID: " + timex3.getTimexId());			
 		}
+		nrGoldTimes = 0;
 		for (Timex3Gold go : gold){
+			nrGoldTimes++;
 			System.out.println(" GoldValue: " + go.getValue());
 			System.out.println(" GoldText: " + go.getTimex3Text());
 			System.out.println(" GoldType: " + go.getTimex3type());
 			System.out.println(" GoldID: " + go.getTID());
 			System.out.println("- - - - - - - - - - - - -");
 		}
+		correct = 0;
+		/*for (Timex3 timex3 : timex){
+			for (Timex3Gold go : gold){
+				if(timex3.getTimexId().equals(go.getTID())&&timex3.getTimexValue().equals(go.getValue())){
+					correct++;
+					allcorrect++;
+				}
+			}
+			
+		}*/
+		for (Timex3 timex3 : timex){
+			for (Timex3Gold go : gold){
+				if(timex3.getTimexId().equals(go.getTID())||timex3.getCoveredText().equals(go.getTimex3Text())){
+						if(timex3.getTimexValue().equals(go.getValue())){
+							correct++;
+							allcorrect++;
+							if(correct>timex.size()){
+								correct--;
+								allcorrect--;
+							}
+						}/*else{
+							int length = timex.size();
+							String id = timex3.getTimexId();
+							id = id.split("t")[1];
+							int tid = Integer.parseInt(id)+1;
+							if(!(tid>length)){
+							id = "t"+String.valueOf(tid);
+							}
+						}*/
+				}
+			}
+			
+		}
 		
-		
+		overall = overall + (nrGoldTimes-1);
+		System.out.println("found: " + nrTimes);
+		System.out.println("Golds: " + (nrGoldTimes-1));
+		System.out.println(correct + " out of "+ (nrGoldTimes-1) + " correct");
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		//printTimexAnnotationsInline(aJCas);
 	}
@@ -125,6 +172,8 @@ public class TwitterWriter extends JCasAnnotator_ImplBase{
 	        super.collectionProcessComplete();
 	        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 	        System.out.println("Number of Tweets: "  + numberOfDocuments);
+	        System.out.println("Overall: " + allcorrect + " out of " + overall + " correct!!!!!!!!");
+	        System.out.println((((double)allcorrect/(double)overall)*100) + "% are correct");
 	        System.out.println("Writer hat auch was gemacht!!!");
 	        
 	        

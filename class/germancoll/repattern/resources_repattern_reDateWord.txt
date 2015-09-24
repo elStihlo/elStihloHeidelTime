@@ -1,0 +1,36 @@
+// author: Jannik Strötgen
+// email:  stroetgen@uni-hd.de
+// date:   2011-06-10
+// This file contains regular expression patterns for date words.
+// FORMAT: one line is one disjunction of the pattern
+[Gg]estern
+[Hh]eute
+[Hh]eutige
+[Hh]eutigen
+[Tt]oday
+[Mm]orgen
+[Mm]orgige
+[Jj]etzt
+[Gg]erade
+[Gg]erad
+[Gg]rad
+[Gg]rade
+[Ss]o bald wie möglich
+[Aa]sap
+[Bb]ald
+[Kk]ürzlich
+[Dd]erzeit
+[Zz]urzeit
+[Gg]egenwärtig
+[Hh]eutzutage
+[Vv]orgestern
+[��]bermorgen
+[Nn]un
+[Gg]leich
+[Aa]ktuell
+[Aa]ktuelle
+[Ss]oeben
+[Dd]irekt
+[Ss]äter
+[Mm]omentan
+[Ii]m [Mm]oment

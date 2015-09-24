@@ -1,0 +1,13 @@
+// author: Jannik Strötgen
+// email:  stroetgen@uni-hd.de
+// date:   2011-06-10
+// This file contains regular expression patterns for set words.
+// FORMAT: one line is one disjunction of the pattern
+[Jj]ährlich
+[Jj]�hrl.
+[Mm]onatlich
+[Mm]tl.
+[Tt]äglich
+[Tt]�gl.
+[Ww]öchentlich
+

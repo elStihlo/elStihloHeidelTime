@@ -1,4 +1,4 @@
-// author: Jannik Strötgen
+// author: Jannik StrÃ¶tgen
 // email:  stroetgen@uni-hd.de
 // date:   2011-10-21
 // This file contains rules for the temporal expressions of the type date: daterules
@@ -34,7 +34,7 @@ RULENAME="date_r0f",EXTRACTION="%reYear4Digit%reMonthNumber%reDayNumber",NORM_VA
 RULENAME="date_r1a",EXTRACTION="(%reMonthLong|%reMonthShort) (%reDayNumberTh|%reDayNumber)[\s]?,? %reYear4Digit(, %reWeekday)?",NORM_VALUE="group(7)-%normMonth(group(1))-%normDay(group(4))"
 RULENAME="date_r1b",EXTRACTION="%reDayNumber (%reMonthLong|%reMonthShort)([\s]?,)? %reYear4Digit",NORM_VALUE="group(6)-%normMonth(group(2))-%normDay(group(1))"
 RULENAME="date_r1c",EXTRACTION="(%reDayWordTh|%reDayNumberTh|%reDayNumber) (of) (%reMonthLong|%reMonthShort) %reYear4Digit",NORM_VALUE="group(9)-%normMonth(group(6))-%normDay(group(1))"
-RULENAME="date_r1d",EXTRACTION="%reDayNumber[‐–-]%reMonthShort[‐–-]%reYear2Digit",NORM_VALUE="UNDEF-centurygroup(3)-%normMonth(group(2))-%normDay(group(1))"
+RULENAME="date_r1d",EXTRACTION="%reDayNumber[â€�â€“-]%reMonthShort[â€�â€“-]%reYear2Digit",NORM_VALUE="UNDEF-centurygroup(3)-%normMonth(group(2))-%normDay(group(1))"
 
 // date_r2
 // EXAMPLE r2a_1: November 19
@@ -46,7 +46,7 @@ RULENAME="date_r1d",EXTRACTION="%reDayNumber[‐–-]%reMonthShort[‐–-]%reYe
 // EXAMPLE r2c_2: 19 Nov
 // EXAMPLE r2c_3: 19th of November
 RULENAME="date_r2a",EXTRACTION="(%reMonthLong|%reMonthShort) (%reDayWordTh|%reDayNumberTh|%reDayNumber)",NORM_VALUE="UNDEF-year-%normMonth(group(1))-%normDay(group(4))"
-RULENAME="date_r2b",EXTRACTION="(%reMonthLong|%reMonthShort) (%reDayWordTh|%reDayNumberTh|%reDayNumber)(\–| - | – |-|–| and | or )(%reDayWordTh|%reDayNumberTh|%reDayNumber)",NORM_VALUE="UNDEF-year-%normMonth(group(1))-%normDay(group(9))",OFFSET="group(9)-group(9)"
+RULENAME="date_r2b",EXTRACTION="(%reMonthLong|%reMonthShort) (%reDayWordTh|%reDayNumberTh|%reDayNumber)(\â€“| - | â€“ |-|â€“| and | or )(%reDayWordTh|%reDayNumberTh|%reDayNumber)",NORM_VALUE="UNDEF-year-%normMonth(group(1))-%normDay(group(9))",OFFSET="group(9)-group(9)"
 RULENAME="date_r2c",EXTRACTION="(%reDayWordTh|%reDayNumberTh|%reDayNumber)( of | )(%reMonthLong|%reMonthShort)",NORM_VALUE="UNDEF-year-%normMonth(group(6))-%normDay(group(1))"
 
 // date_r3
@@ -60,8 +60,8 @@ RULENAME="date_r3b",EXTRACTION="%reWeekday[,]? (%reMonthLong|%reMonthShort) (%re
 // date_r4
 // EXAMPLE r4a_1: September 14 and 18, 2010 (find September 14 2010)
 // EXAMPLE r4b_1: September 14 and 18, 2010 (find September 18 2010)
-RULENAME="date_r4a",EXTRACTION="(%reMonthLong|%reMonthShort) (%reDayNumberTh|%reDayNumber)(\–| - | – |-|–| and | or )(%reDayNumberTh|%reDayNumber)[,]? %reYear4Digit",NORM_VALUE="group(11)-%normMonth(group(1))-%normDay(group(4))",OFFSET="group(0)-group(4)"
-RULENAME="date_r4b",EXTRACTION="(%reMonthLong|%reMonthShort) (%reDayNumberTh|%reDayNumber)(\–| - | – |-|–| and | or )(%reDayNumberTh|%reDayNumber)[,]? %reYear4Digit",NORM_VALUE="group(11)-%normMonth(group(1))-%normDay(group(8))",OFFSET="group(8)-group(11)"
+RULENAME="date_r4a",EXTRACTION="(%reMonthLong|%reMonthShort) (%reDayNumberTh|%reDayNumber)(\â€“| - | â€“ |-|â€“| and | or )(%reDayNumberTh|%reDayNumber)[,]? %reYear4Digit",NORM_VALUE="group(11)-%normMonth(group(1))-%normDay(group(4))",OFFSET="group(0)-group(4)"
+RULENAME="date_r4b",EXTRACTION="(%reMonthLong|%reMonthShort) (%reDayNumberTh|%reDayNumber)(\â€“| - | â€“ |-|â€“| and | or )(%reDayNumberTh|%reDayNumber)[,]? %reYear4Digit",NORM_VALUE="group(11)-%normMonth(group(1))-%normDay(group(8))",OFFSET="group(8)-group(11)"
 
 // date_r5
 // EXAMPLE r5a_1: tomorrow
@@ -136,7 +136,7 @@ RULENAME="date_r11b",EXTRACTION="[Tt]he (year-earlier|year-ago) %rePartOfYear",N
 // EXAMPLE r12c_1: nineteen ninety-one
 // EXAMPLE r12d_1: two-thousand ten
 RULENAME="date_r12a",EXTRACTION="(the year )?%reYear4Digit",NORM_VALUE="group(2)"
-RULENAME="date_r12b",EXTRACTION="%reYear4Digit(-|–| and )%reYear2Digit",NORM_VALUE="%SUBSTRING%(group(1),0,2)group(3)",OFFSET="group(3)-group(3)"
+RULENAME="date_r12b",EXTRACTION="%reYear4Digit(-|â€“| and )%reYear2Digit",NORM_VALUE="%SUBSTRING%(group(1),0,2)group(3)",OFFSET="group(3)-group(3)"
 RULENAME="date_r12c",EXTRACTION="%reNumWordTeen( |-)%reNumWord2D",NORM_VALUE="%normDurationNumber(group(1))%normDurationNumber(group(3))"
 RULENAME="date_r12d",EXTRACTION="two( |-)thousand( and)? (%reNumWord2D|%reNumWord1D)",NORM_VALUE="20%normDurationNumber(group(3))"
 
@@ -294,9 +294,11 @@ RULENAME="date_r2c_negative",EXTRACTION="(%reMonthLong|%reMonthShort)",NORM_VALU
 // EXAMPLE r3c_negative_1: 2000 kilometer (four digit number followed a non-temporal unit)
 RULENAME="date_r3a_negative",EXTRACTION="%reYear4Digit ([\S]+)",NORM_VALUE="REMOVE",POS_CONSTRAINT="group(2):NNS:"
 RULENAME="date_r3b_negative",EXTRACTION="%reYear4Digit ([\S]+) ([\S]+)",NORM_VALUE="REMOVE",POS_CONSTRAINT="group(2):JJ:group(3):NNS:"
-RULENAME="date_r3c_negative",EXTRACTION="%reYear4Digit (kilometers?|miles?|foot|feet|dollars?)",NORM_VALUE="REMOVE"
+RULENAME="date_r3c_negative",EXTRACTION="%reYear4Digit (kilometers?|miles?|foot|feet|dollars?|DM|[Ee]uro)",NORM_VALUE="REMOVE"
 
 // EXAMPLE r4a_negative: W2000.1920
 // EXAMPLE r4a_negative: <DOCID> 2012 </DOCID>
+// EXAMPLE r4a_negative: 1250,-
 RULENAME="date_r4a_negative",EXTRACTION="[\S]+%reYear4Digit\.%reYear4Digit",NORM_VALUE="REMOVE"
 RULENAME="date_r4b_negative",EXTRACTION="<DOCID>.*?</DOCID>",NORM_VALUE="REMOVE"
+RULENAME="date_r4c_negative",EXTRACTION="%reYear4Digit,-",NORM_VALUE="REMOVE"

@@ -26,13 +26,17 @@ public class Pipeline {
 		
 		//String inputFolder = "Test/TwitterData";
 		
-		CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
+		/*CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
                 BA_TwitterReader.class, BA_TwitterReader.PARAM_INPUTDIR, "F:/Uni/BachelorArbeit/TweetsMitTimeX/TrainingTweets/EinzelTweetsTraining",
-                ACETernReader.PARAM_DCT, true);
+                ACETernReader.PARAM_DCT, true);*/
 		
 		/*CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
-                BA_TwitterReader.class, BA_TwitterReader.PARAM_INPUTDIR, "F:/Uni/BachelorArbeit/TweetsMitTimeX/TrainingTweets/Malformed",
+                BA_TwitterReader.class, BA_TwitterReader.PARAM_INPUTDIR, "F:/Uni/BachelorArbeit/TweetsMitTimeX/TrainingTweets/NochNichtGefunden",
                 ACETernReader.PARAM_DCT, true);*/
+		
+		CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
+                BA_TwitterReader.class, BA_TwitterReader.PARAM_INPUTDIR, "F:/Uni/BachelorArbeit/TweetsMitTimeX/EinzelTweets",
+                ACETernReader.PARAM_DCT, true);
 		
 		/*CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
                 ACETernReader.class, ACETernReader.PARAM_INPUTDIR, "Test/Tempeval3", ACETernReader.PARAM_DCT, true);*/
@@ -85,7 +89,7 @@ public class Pipeline {
 	                		TreeTaggerWrapper.PARAM_ANNOTATE_SENTENCES, true, TreeTaggerWrapper.PARAM_IMPROVE_GERMAN_SENTENCES, false);*/
 		 
 		 AnalysisEngineDescription heidelTime = AnalysisEngineFactory
-	                .createEngineDescription(HeidelTime.class, HeidelTime.PARAM_LANGUAGE, "german", HeidelTime.PARAM_DATE, true,
+	                .createEngineDescription(HeidelTime.class, HeidelTime.PARAM_LANGUAGE, "germancoll", HeidelTime.PARAM_DATE, true,
 	                		HeidelTime.PARAM_DURATION, true, HeidelTime.PARAM_SET, true, HeidelTime.PARAM_TIME, true,
 	                		HeidelTime.PARAM_TYPE_TO_PROCESS, "colloquial", HeidelTime.PARAM_DEBUG, true, HeidelTime.PARAM_GROUP, true);
 		 

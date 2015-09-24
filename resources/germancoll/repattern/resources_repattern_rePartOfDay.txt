@@ -1,0 +1,19 @@
+// author: Jannik Strötgen
+// email:  stroetgen@uni-hd.de
+// date:   2011-06-10
+// This file contains regular expression patterns for parts of days.
+// FORMAT: one line is one disjunction of the pattern
+[Vv]ormittag
+[Nn]achmittag
+[Mm]ittag
+[Mm]ittags
+[Mm]itternacht
+[Nn]acht
+[Nn]achts
+[Nn]ight
+[Nn]8
+[Mm]orgen
+[Mm]orgens
+[Mm]oin
+[Aa]bend
+[Aa]bends
