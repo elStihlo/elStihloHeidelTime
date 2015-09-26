@@ -15,7 +15,7 @@ import de.unidue.langtech.teaching.ba.type.Timex3Gold;
 import de.unihd.dbs.uima.types.heideltime.Dct;
 import de.unihd.dbs.uima.types.heideltime.Timex3;
 
-public class TwitterWriter extends JCasAnnotator_ImplBase{
+public class BA_Writer extends JCasAnnotator_ImplBase{
 
 	
 	private int numberOfDocuments = 0;
@@ -31,33 +31,18 @@ public class TwitterWriter extends JCasAnnotator_ImplBase{
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
 		
 		numberOfDocuments++;
+		int groesse=0;
 		//count++;
 		String rawTweet = aJCas.getDocumentText();
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		System.out.println("Message: " + rawTweet);
 		
-		/*String filename = "F:/Uni/BachelorArbeit/TweetsMitTimeX/TrainingTweets/EinzelTweetsTraining/TrainingTweetGER" + count + ".tml"; 
-        try 
-        {
-            FileOutputStream fos = new FileOutputStream (filename);
-            //GZIPOutputStream gzip = new GZIPOutputStream(fos);
-            OutputStreamWriter fw = new OutputStreamWriter(fos);
-            	fw.write(rawTweet);
-            	//fw.append(System.getProperty("/n"));
-            	fw.flush();
-            	fw.close();
-            }catch ( IOException e ) {
-            	  System.err.println( "Konnte Datei nicht erstellen" );
-            }*/
+				
 		
-		
-		
-		
-		
-		Collection<Dct> dct = JCasUtil.select(aJCas, Dct.class );
+		/*Collection<Dct> dct = JCasUtil.select(aJCas, Dct.class );
 		for (Dct dCT : dct){
 			System.out.println("DCTValue: " + dCT.getValue());
-		}
+		}*/
 		
 		Collection<Timex3Gold> gold = JCasUtil.select(aJCas, Timex3Gold.class);
 		Collection<Timex3> timex = JCasUtil.select(aJCas, Timex3.class);
@@ -65,19 +50,19 @@ public class TwitterWriter extends JCasAnnotator_ImplBase{
 		nrTimes = 0;
 		for (Timex3 timex3 : timex){
 			nrTimes++;
-			System.out.println(" Timex3 Value: " + timex3.getTimexValue());
+			/*System.out.println(" Timex3 Value: " + timex3.getTimexValue());
 			System.out.println(" Timex3Text: " + timex3.getCoveredText());
 			System.out.println(" Timex3Type: " + timex3.getTimexType());
-			System.out.println(" Timex3ID: " + timex3.getTimexId());			
+			System.out.println(" Timex3ID: " + timex3.getTimexId());		*/	
 		}
 		nrGoldTimes = 0;
 		for (Timex3Gold go : gold){
 			nrGoldTimes++;
-			System.out.println(" GoldValue: " + go.getValue());
+			/*System.out.println(" GoldValue: " + go.getValue());
 			System.out.println(" GoldText: " + go.getTimex3Text());
 			System.out.println(" GoldType: " + go.getTimex3type());
 			System.out.println(" GoldID: " + go.getTID());
-			System.out.println("- - - - - - - - - - - - -");
+			System.out.println("- - - - - - - - - - - - -");*/
 		}
 		correct = 0;
 		/*for (Timex3 timex3 : timex){
@@ -91,11 +76,13 @@ public class TwitterWriter extends JCasAnnotator_ImplBase{
 		}*/
 		for (Timex3 timex3 : timex){
 			for (Timex3Gold go : gold){
+				int size = gold.size()-1;
+				groesse = size;
 				if(timex3.getTimexId().equals(go.getTID())||timex3.getCoveredText().equals(go.getTimex3Text())){
 						if(timex3.getTimexValue().equals(go.getValue())){
 							correct++;
 							allcorrect++;
-							if(correct>(gold.size()-1)){
+							if(correct>size){
 								correct--;
 								allcorrect--;
 							}
@@ -117,6 +104,7 @@ public class TwitterWriter extends JCasAnnotator_ImplBase{
 		System.out.println("found: " + nrTimes);
 		System.out.println("Golds: " + (nrGoldTimes-1));
 		System.out.println(correct + " out of "+ (nrGoldTimes-1) + " correct");
+		System.out.println("Test::: " + groesse);
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		//printTimexAnnotationsInline(aJCas);
 	}
@@ -171,7 +159,7 @@ public class TwitterWriter extends JCasAnnotator_ImplBase{
 	    {
 	        super.collectionProcessComplete();
 	        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-	        System.out.println("Number of Tweets: "  + numberOfDocuments);
+	        System.out.println("Number of Documents: "  + numberOfDocuments);
 	        System.out.println("Overall: " + allcorrect + " out of " + overall + " correct!!!!!!!!");
 	        System.out.println((((double)allcorrect/(double)overall)*100) + "% are correct");
 	        System.out.println("Writer hat auch was gemacht!!!");

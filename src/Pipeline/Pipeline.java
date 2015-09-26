@@ -34,16 +34,16 @@ public class Pipeline {
                 BA_TwitterReader.class, BA_TwitterReader.PARAM_INPUTDIR, "F:/Uni/BachelorArbeit/TweetsMitTimeX/TrainingTweets/NochNichtGefunden",
                 ACETernReader.PARAM_DCT, true);*/
 		
-		CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
+		/*CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
                 BA_TwitterReader.class, BA_TwitterReader.PARAM_INPUTDIR, "F:/Uni/BachelorArbeit/TweetsMitTimeX/EinzelTweets",
-                ACETernReader.PARAM_DCT, true);
+                ACETernReader.PARAM_DCT, true);*/
 		
 		/*CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
                 ACETernReader.class, ACETernReader.PARAM_INPUTDIR, "Test/Tempeval3", ACETernReader.PARAM_DCT, true);*/
 		
-		/*CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
-                Tempeval2Reader.class, Tempeval2Reader.PARAM_INPUTDIR, "Test/Timebank");
-		*/
+		CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
+                BA_TwitterReader.class, BA_TwitterReader.PARAM_INPUTDIR, "Test/Timebank", BA_TwitterReader.PARAM_DCT, true);
+		
 		
 		/*CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
                 Tempeval3Reader.class, Tempeval3Reader.PARAM_INPUTDIR, "Test/Tempeval3");*/
@@ -78,23 +78,32 @@ public class Pipeline {
 		 
 		 
 		 
-		 AnalysisEngineDescription treeTagger = AnalysisEngineFactory
-	                .createEngineDescription(TreeTaggerWrapper.class, TreeTaggerWrapper.PARAM_ANNOTATE_PARTOFSPEECH, true,
-	                		TreeTaggerWrapper.PARAM_LANGUAGE, "german", TreeTaggerWrapper.PARAM_ANNOTATE_TOKENS, true,
-	                		TreeTaggerWrapper.PARAM_ANNOTATE_SENTENCES, true, TreeTaggerWrapper.PARAM_IMPROVE_GERMAN_SENTENCES, true);
-		 
 		 /*AnalysisEngineDescription treeTagger = AnalysisEngineFactory
 	                .createEngineDescription(TreeTaggerWrapper.class, TreeTaggerWrapper.PARAM_ANNOTATE_PARTOFSPEECH, true,
+	                		TreeTaggerWrapper.PARAM_LANGUAGE, "german", TreeTaggerWrapper.PARAM_ANNOTATE_TOKENS, true,
+	                		TreeTaggerWrapper.PARAM_ANNOTATE_SENTENCES, true, TreeTaggerWrapper.PARAM_IMPROVE_GERMAN_SENTENCES, true);*/
+		 
+		 AnalysisEngineDescription treeTagger = AnalysisEngineFactory
+	                .createEngineDescription(TreeTaggerWrapper.class, TreeTaggerWrapper.PARAM_ANNOTATE_PARTOFSPEECH, true,
 	                		TreeTaggerWrapper.PARAM_LANGUAGE, "english", TreeTaggerWrapper.PARAM_ANNOTATE_TOKENS, true,
-	                		TreeTaggerWrapper.PARAM_ANNOTATE_SENTENCES, true, TreeTaggerWrapper.PARAM_IMPROVE_GERMAN_SENTENCES, false);*/
+	                		TreeTaggerWrapper.PARAM_ANNOTATE_SENTENCES, true, TreeTaggerWrapper.PARAM_IMPROVE_GERMAN_SENTENCES, false);
 		 
 		 AnalysisEngineDescription heidelTime = AnalysisEngineFactory
+	                .createEngineDescription(HeidelTime.class, HeidelTime.PARAM_LANGUAGE, "english", HeidelTime.PARAM_DATE, true,
+	                		HeidelTime.PARAM_DURATION, true, HeidelTime.PARAM_SET, true, HeidelTime.PARAM_TIME, true,
+	                		HeidelTime.PARAM_TYPE_TO_PROCESS, "news", HeidelTime.PARAM_DEBUG, true, HeidelTime.PARAM_GROUP, true);
+		 
+		 AnalysisEngineDescription writer = AnalysisEngineFactory
+				 .createEngineDescription(BA_Writer.class);
+		 
+		 
+		/* AnalysisEngineDescription heidelTime = AnalysisEngineFactory
 	                .createEngineDescription(HeidelTime.class, HeidelTime.PARAM_LANGUAGE, "germancoll", HeidelTime.PARAM_DATE, true,
 	                		HeidelTime.PARAM_DURATION, true, HeidelTime.PARAM_SET, true, HeidelTime.PARAM_TIME, true,
 	                		HeidelTime.PARAM_TYPE_TO_PROCESS, "colloquial", HeidelTime.PARAM_DEBUG, true, HeidelTime.PARAM_GROUP, true);
 		 
 		 AnalysisEngineDescription writer = AnalysisEngineFactory
-				 .createEngineDescription(TwitterWriter.class);
+				 .createEngineDescription(TwitterWriter.class);*/
 		
 		
 		//SimplePipeline.runPipeline(reader, writer);
