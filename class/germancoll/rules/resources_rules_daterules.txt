@@ -142,8 +142,8 @@ RULENAME="date_r8a",EXTRACTION="%reDateWord",NORM_VALUE="%normDateWord(group(1))
 
 // date_r9
 // EXAMPLE r9a_1: Montag
-RULENAME="date_r9a",EXTRACTION="%reWeekday",NORM_VALUE="UNDEF-next-day-%normWeekday(group(1))"
-RULENAME="date_r9b",EXTRACTION="([\S]+)%reWeekday",NORM_VALUE="UNDEF-next-day-%normWeekday(group(2))"
+RULENAME="date_r9a",EXTRACTION="%reWeekday",NORM_VALUE="UNDEF-next-%normWeekday(group(1))"
+RULENAME="date_r9b",EXTRACTION="([\S]+)%reWeekday",NORM_VALUE="UNDEF-next-%normWeekday(group(2))"
 
 ///////////////////////
 // Month Granularity //

@@ -93,11 +93,13 @@ RULENAME="date_r0e",EXTRACTION="%reMonthNumber-%reDayNumber( \(.*?\))",NORM_VALU
 // EXAMPLE r1c_1: 1.3.
 // EXAMPLE r1d_1: 1.3
 // EXAMPLE r1e_1: 12.-28.01.2015
+// EXAMPLE r1f_1: am 5.
 RULENAME="date_r1a",EXTRACTION="%reDayNumber[\.]%reMonthNumber[\.]%reYear2Digit",NORM_VALUE="UNDEF-centurygroup(3)-%normMonth(group(2))-%normDay(group(1))"
 RULENAME="date_r1b",EXTRACTION="%reDayNumber[\.]%reMonthNumber[\.]%reYear4Digit",NORM_VALUE="group(3)-%normMonth(group(2))-%normDay(group(1))"
 RULENAME="date_r1c",EXTRACTION="%reDayNumber[\.]%reMonthNumber[\.]",NORM_VALUE="UNDEF-year-%normMonth(group(2))-%normDay(group(1))"
 RULENAME="date_r1d",EXTRACTION="%reDayNumber[\.]%reMonthNumber",NORM_VALUE="UNDEF-year-%normMonth(group(2))-%normDay(group(1))"
 RULENAME="date_r1e",EXTRACTION="%reDayNumber[\.]-%reDayNumber[\.]%reMonthNumber[\.]%reYear4Digit",NORM_VALUE="group(4)-%normMonth(group(3))-%normDay(group(1))",OFFSET="group(1)-group(1)"
+RULENAME="date_r1f",EXTRACTION="(am) %reDayNumber[\.]",NORM_VALUE="UNDEF-this-month-%normDay(group(2))",OFFSET="group(2)-group(2)"
 
 // date_r2 (keep though it is English date format)
 // EXAMPLE r2a_1: Februar 25, 2009
@@ -188,8 +190,8 @@ RULENAME="date_r13c",EXTRACTION="([Dd]as |[Dd]er |[Dd]ie )?%rePartOfYear des Vor
 // EXAMPLE r14a_2: Jahr 2009
 // EXAMPLE r14a_3: im Winter vor 20 Jahren
 RULENAME="date_r14a_1",EXTRACTION="(Jahr[es]* )?%reYear4Digit",NORM_VALUE="group(2)"
-RULENAME="date_r14a_3",EXTRACTION="%reSeason (vor) (%reNumWordTeen|%reNumWord1D|%reNumWord2D) ([Jj]ahren?)",NORM_VALUE="UNDEF-REF-year-MINUS-%normDurationNumber(group(3))-%normSeason(group(1))"
-RULENAME="date_r14a_4",EXTRACTION="%reSeason (vor) ([\d]+) ([Jj]ahren?)",NORM_VALUE="UNDEF-REF-year-MINUS-group(3)-%normSeason(group(1))"
+RULENAME="date_r14a_3",EXTRACTION="%reSeason (vor) (%reNumWordTeen|%reNumWord1D|%reNumWord2D) ([Jj]ahren?)",NORM_VALUE="UNDEF-this-year-MINUS-%normDurationNumber(group(3))-%normSeason(group(1))"
+RULENAME="date_r14a_4",EXTRACTION="%reSeason (vor) ([\d]+) ([Jj]ahren?)",NORM_VALUE="UNDEF-this-year-MINUS-group(3)-%normSeason(group(1))"
 
 //date_r15
 // EXAMPLE r15a_1: 1850-58 (find: 1858)
@@ -234,6 +236,7 @@ RULENAME="date_r19c",EXTRACTION="([Dd]ie |[Dd]en )?%rePartWords([ ]?)%reYear4Dig
 RULENAME="date_r19d",EXTRACTION="([Dd]ie |[Dd]en )?%rePartWords([ ]?)%reYear2Digit(ern|er)( Jahren?|-Jahren?)?",NORM_VALUE="UNDEF-century%SUBSTRING%(group(4),0,1)",NORM_MOD="%normPartWords(group(2))"
 RULENAME="date_r19e",EXTRACTION="([Dd]ie |[Dd]en )?%reDecadeWord( [Jj]ahren?|jahren?)?",NORM_VALUE="UNDEF-century%normDecadeWord(group(2))"
 RULENAME="date_r19f",EXTRACTION="([Dd]ie |[Dd]en )?%rePartWords der %reDecadeWord( [Jj]ahren?|jahren?)?",NORM_VALUE="UNDEF-century%normDecadeWord(group(3))",NORM_MOD="%normPartWords(group(2))"
+RULENAME="date_r19g",EXTRACTION="([Dd]ie |[Dd]en )?#%reYear2Digit(ern|er)( Jahren?|-Jahren?)?",NORM_VALUE="UNDEF-century%SUBSTRING%(group(2),0,1)"
 
 // date_r20
 // EXAMPLE r20a_1: dieses Jahr
@@ -317,12 +320,12 @@ RULENAME="date_r29b",EXTRACTION="([Ee]inigen?|[Ww]enigen?|[Vv]ielen?) %reUnit (f
 // NEGATIVE RULES //
 ////////////////////
 // CHECK THESE RULES (the German tag set is not equal to the English tag set)
-RULENAME="date_r1a_negative",EXTRACTION="(2[3456789]\d\d)",NORM_VALUE="REMOVE"
-RULENAME="date_r1b1_negative",EXTRACTION="%reYear4Digit ([\S]+)",NORM_VALUE="REMOVE",POS_CONSTRAINT="group(2):NN:"
-RULENAME="date_r1b2_negative",EXTRACTION="%reYear4Digit (respektive|von|oder) (%reYear4Digit|[\d]+) ([\S]+)",NORM_VALUE="REMOVE",POS_CONSTRAINT="group(5):NN:"
-RULENAME="date_r1c1_negative",EXTRACTION="%reYear4Digit ([\S]+) ([\S]+)",NORM_VALUE="REMOVE",POS_CONSTRAINT="group(2):ADJA:group(3):NN:"
-RULENAME="date_r1c2_negative",EXTRACTION="%reYear4Digit ([\S]+) ([\S]+) ([\S]+) ([\S]+)",NORM_VALUE="REMOVE",POS_CONSTRAINT="group(2):ADJA:group(3):KON:group(4):ADJA:group(5):NN:"
-RULENAME="date_r1d_negative",EXTRACTION="%reYear4Digit (m\b|km\b|ft\b|yr\b|dg\b|cm\b|ha\b|sq\b|PS\b)",NORM_VALUE="REMOVE"
+//RULENAME="date_r1a_negative",EXTRACTION="(2[3456789]\d\d)",NORM_VALUE="REMOVE"
+//RULENAME="date_r1b1_negative",EXTRACTION="%reYear4Digit ([\S]+)",NORM_VALUE="REMOVE",POS_CONSTRAINT="group(2):NN:"
+//RULENAME="date_r1b2_negative",EXTRACTION="%reYear4Digit (respektive|von|oder) (%reYear4Digit|[\d]+) ([\S]+)",NORM_VALUE="REMOVE",POS_CONSTRAINT="group(5):NN:"
+//RULENAME="date_r1c1_negative",EXTRACTION="%reYear4Digit ([\S]+) ([\S]+)",NORM_VALUE="REMOVE",POS_CONSTRAINT="group(2):ADJA:group(3):NN:"
+//RULENAME="date_r1c2_negative",EXTRACTION="%reYear4Digit ([\S]+) ([\S]+) ([\S]+) ([\S]+)",NORM_VALUE="REMOVE",POS_CONSTRAINT="group(2):ADJA:group(3):KON:group(4):ADJA:group(5):NN:"
+//RULENAME="date_r1d_negative",EXTRACTION="%reYear4Digit (m\b|km\b|ft\b|yr\b|dg\b|cm\b|ha\b|sq\b|PS\b)",NORM_VALUE="REMOVE"
 
 // Further negative rules (March 2015, Jannik Strötgen)
 // typical fairy tail expression    

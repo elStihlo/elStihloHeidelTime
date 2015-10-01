@@ -19,6 +19,7 @@ RULENAME="set_r1d",EXTRACTION="([Jj]ede[nrs]?) %reSeason",NORM_VALUE="XXXX-%norm
 RULENAME="set_r1e",EXTRACTION="([Jj]ede[nrs]?) ([Ss][Ee][Kk][Uu][Nn][Dd][Ee])",NORM_VALUE="PT1S",NORM:QUANT="EVERY"
 RULENAME="set_r1f",EXTRACTION="([Jj]ede[nrs]?) ([Mm][Ii][Nn][Uu][Tt][Ee])",NORM_VALUE="PT1M",NORM:QUANT="EVERY"
 RULENAME="set_r1g",EXTRACTION="([Jj]ede[nrs]?) ([Ss][Tt][Uu][Nn][Dd][Ee])",NORM_VALUE="PT1H",NORM:QUANT="EVERY"
+RULENAME="set_r1h",EXTRACTION="%reWeekday(e)",NORM_VALUE="XXXX-WXX-%normDayInWeek(group(1))",NORM_QUANT="EVERY",NORM_FREQ="1W"
 
 // set_r2
 // EXAMPLE r2a-1: jährlich

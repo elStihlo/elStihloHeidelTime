@@ -1,11 +1,9 @@
 package Pipeline;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+
 import java.util.Collection;
 
-import org.apache.commons.lang.StringEscapeUtils;
+
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.fit.component.JCasAnnotator_ImplBase;
 import org.apache.uima.fit.util.JCasUtil;
@@ -15,6 +13,11 @@ import de.unidue.langtech.teaching.ba.type.Timex3Gold;
 import de.unihd.dbs.uima.types.heideltime.Dct;
 import de.unihd.dbs.uima.types.heideltime.Timex3;
 
+
+/**
+ *  
+ */
+
 public class BA_Writer extends JCasAnnotator_ImplBase{
 
 	
@@ -23,6 +26,7 @@ public class BA_Writer extends JCasAnnotator_ImplBase{
 	int correct = 0;
 	int allcorrect = 0;
 	int nrTimes = 0;
+	int allFoundTimes = 0;
 	int nrGoldTimes = 0;
 	int overall = 0;
 	
@@ -50,30 +54,22 @@ public class BA_Writer extends JCasAnnotator_ImplBase{
 		nrTimes = 0;
 		for (Timex3 timex3 : timex){
 			nrTimes++;
-			/*System.out.println(" Timex3 Value: " + timex3.getTimexValue());
+			System.out.println(" Timex3 Value: " + timex3.getTimexValue());
 			System.out.println(" Timex3Text: " + timex3.getCoveredText());
 			System.out.println(" Timex3Type: " + timex3.getTimexType());
-			System.out.println(" Timex3ID: " + timex3.getTimexId());		*/	
+			System.out.println(" Timex3ID: " + timex3.getTimexId());			
 		}
 		nrGoldTimes = 0;
 		for (Timex3Gold go : gold){
 			nrGoldTimes++;
-			/*System.out.println(" GoldValue: " + go.getValue());
+			System.out.println(" GoldValue: " + go.getValue());
 			System.out.println(" GoldText: " + go.getTimex3Text());
 			System.out.println(" GoldType: " + go.getTimex3type());
 			System.out.println(" GoldID: " + go.getTID());
-			System.out.println("- - - - - - - - - - - - -");*/
+			System.out.println("- - - - - - - - - - - - -");
 		}
 		correct = 0;
-		/*for (Timex3 timex3 : timex){
-			for (Timex3Gold go : gold){
-				if(timex3.getTimexId().equals(go.getTID())&&timex3.getTimexValue().equals(go.getValue())){
-					correct++;
-					allcorrect++;
-				}
-			}
-			
-		}*/
+		
 		for (Timex3 timex3 : timex){
 			for (Timex3Gold go : gold){
 				int size = gold.size()-1;
@@ -86,72 +82,24 @@ public class BA_Writer extends JCasAnnotator_ImplBase{
 								correct--;
 								allcorrect--;
 							}
-						}/*else{
-							int length = timex.size();
-							String id = timex3.getTimexId();
-							id = id.split("t")[1];
-							int tid = Integer.parseInt(id)+1;
-							if(!(tid>length)){
-							id = "t"+String.valueOf(tid);
-							}
-						}*/
+						}
 				}
 			}
 			
 		}
 		
 		overall = overall + (nrGoldTimes-1);
+		allFoundTimes = allFoundTimes + nrTimes;
 		System.out.println("found: " + nrTimes);
 		System.out.println("Golds: " + (nrGoldTimes-1));
 		System.out.println(correct + " out of "+ (nrGoldTimes-1) + " correct");
 		System.out.println("Test::: " + groesse);
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-		//printTimexAnnotationsInline(aJCas);
+		
 	}
 	
 	
-	/*public void printTimexAnnotationsInline(JCas jcas){
-		
-		
-		// what has to be printed?
-	    String toprint = "";
-		
-		
-		// document text
-	    String doctext    = jcas.getDocumentText();
-	    int startposition = 0;
-	    int endposition   = doctext.length();
-	    boolean anyTimex  = false;
-	    
-		// get timex index
-		FSIndex indexTimex   = jcas.getAnnotationIndex(Timex3.type);
-		FSIterator iterTimex = indexTimex.iterator();
-		
-		
-		while (iterTimex.hasNext()){
-			anyTimex = true;
-			Timex3 t = (Timex3) iterTimex.next();
-			endposition = t.getBegin();
-			if (endposition < startposition){
-				if (printDetails == true){
-					System.err.println("[TwitterWriter] Overlapping expressions... ignoring: "+t.getCoveredText());
-				}
-			}
-		}	
-		
-		
-		if (anyTimex == true){
-            // text from last timex to end
-			toprint = toprint + doctext.substring(startposition);
-		}
-		if (anyTimex == false){
-			// whole document text
-			toprint = toprint + doctext;
-		}
-		
-		System.out.println("Das ist was rauskommt: " + toprint);
-			
-	}*/
+	
 	
 	
 	public void collectionProcessComplete()
@@ -160,9 +108,18 @@ public class BA_Writer extends JCasAnnotator_ImplBase{
 	        super.collectionProcessComplete();
 	        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 	        System.out.println("Number of Documents: "  + numberOfDocuments);
-	        System.out.println("Overall: " + allcorrect + " out of " + overall + " correct!!!!!!!!");
+	        //Precision
+	        double pre = (double)allcorrect/(double)allFoundTimes;
+	        System.out.println("Precision: " + allcorrect + " out of " + allFoundTimes + " found Timexes are correct!!!!!!!!");
+	        System.out.println((((double)allcorrect/(double)allFoundTimes)*100) + "% are correct");
+	        //Recall
+	        double rec = (double)allcorrect/(double)overall;
+	        System.out.println("Recall: " + allcorrect + " out of " + overall + " Timexes were found and correct!!!!!!!!");
 	        System.out.println((((double)allcorrect/(double)overall)*100) + "% are correct");
-	        System.out.println("Writer hat auch was gemacht!!!");
+	        //F1 Score
+	        double f1s = 2*((pre * rec)/(pre + rec));
+	        System.out.println("F1-Score: " + (f1s*100) + "%");
+	        System.out.println("All documents processed!!!");
 	        
 	        
 	    }

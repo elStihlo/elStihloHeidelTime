@@ -5,12 +5,14 @@
 // FORMAT: one line is one disjunction of the pattern
 [Gg]estern
 [Hh]eute
+HEUTE
 [Hh]eutige
 [Hh]eutigen
 [Tt]oday
 [Mm]orgen
 [Mm]orgige
 [Jj]etzt
+JETZT
 [Gg]erade
 [Gg]erad
 [Gg]rad
@@ -31,6 +33,7 @@
 [Aa]ktuelle
 [Ss]oeben
 [Dd]irekt
-[Ss]äter
+[Ss]päter
 [Mm]omentan
 [Ii]m [Mm]oment
+[Aa]b [Ss]ofort

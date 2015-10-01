@@ -24,10 +24,10 @@ RULENAME="time_r1b",EXTRACTION="(%reYear4Digit-%reMonthNumber-%reDayNumber)(T| )
 RULENAME="time_r1c",EXTRACTION="(%reMonthNumber/%reDayNumber/%reYear4Digit) %reTimeHour:%reTimeMinute",NORM_VALUE="group(4)-group(2)-group(3)Tgroup(5):group(6)"
 RULENAME="time_r1d",EXTRACTION="(%reMonthNumber/%reDayNumber/%reYear4Digit) %reTimeHour:%reTimeMinute:%reTimeMinute",NORM_VALUE="group(4)-group(2)-group(3)Tgroup(5):group(6):group(7)"
 RULENAME="time_r1e",EXTRACTION="(%reMonthNumber/%reDayNumber/%reYear4Digit) %reTimeHour:%reTimeMinute:%reTimeMinute\.%reYear2Digit",NORM_VALUE="group(4)-group(2)-group(3)Tgroup(5):group(6):group(7).group(8)"
-//RULENAME="time_r1f",EXTRACTION="%reWeekday? (%reMonthLong|%reMonthShort)-%reDayNumber-%reYear4Digit) %reTimeHour:%reTimeMinute",NORM_VALUE="group(4)-%normMonth(group(2))-group(3)Tgroup(5):group(6)"
-RULENAME="time_r1g",EXTRACTION="%reDayNumber[\.]%reMonthNumber[\.]%reYear4Digit (um)? %reTimeHour:%reTimeMinute(Uhr| Uhr)?",NORM_VALUE="group(3)-group(2)-group(1)Tgroup(5):group(6)"
+RULENAME="time_r1f",EXTRACTION="(%reMonthLong|%reMonthShort)-%reDayNumber-%reYear4Digit %reTimeHour:%reTimeMinute",NORM_VALUE="group(5)-%normMonth(group(1))-group(4)Tgroup(6):group(7)"
+RULENAME="time_r1g",EXTRACTION="%reDayNumber[\.]%reMonthNumber[\.]%reYear4Digit (um )?%reTimeHour:%reTimeMinute(Uhr| Uhr)?",NORM_VALUE="group(3)-group(2)-group(1)Tgroup(5):group(6)"
 RULENAME="time_r1h",EXTRACTION="%reDayNumber[\.]%reMonthNumber %reTimeHour:%reTimeMinute",NORM_VALUE="UNDEF-this-year-group(2)-group(1)Tgroup(3):group(4)"
-RULENAME="time_r1i",EXTRACTION="%reWeekday?, %reDayNumber/%reMonthNumber/%reYear4Digit, %reTimeHour (Uhr|h)?",NORM_VALUE="group(4)-group(3)-group(2)Tgroup(5):00"
+RULENAME="time_r1i",EXTRACTION="%reWeekday?,? %reDayNumber/%reMonthNumber/%reYear4Digit,? %reTimeHour(Uhr| Uhr| h|h)?",NORM_VALUE="group(4)-group(3)-group(2)Tgroup(5):00"
 RULENAME="time_r1j",EXTRACTION="%reDayNumber[\.]%reMonthNumber[\.]%reYear4Digit (-) %reTimeHour:%reTimeMinute:%reTimeMinute(Uhr| Uhr)?",NORM_VALUE="group(3)-group(2)-group(1)Tgroup(5):group(6):group(7)"
 
 /////////////////////////////
@@ -47,7 +47,7 @@ RULENAME="time_r2c",EXTRACTION="%rePartOfDay %reDateWord",NORM_VALUE="%normDateW
 RULENAME="time_r2d",EXTRACTION="%reDateWord %rePartOfDay",NORM_VALUE="%normDateWord(group(1))T%normPartOfDay(group(2))"
 RULENAME="time_r2e",EXTRACTION="%rePartOfDay (um )(kurz )(vor|nach) %reTimeHour:%reTimeMinute",NORM_VALUE="UNDEF-this-dayT%normDay(group(5)):group(6)"
 RULENAME="time_r2f",EXTRACTION="%rePartOfDay (um )(kurz )(vor|nach) %reTimeHour",NORM_VALUE="UNDEF-this-dayT%normDay(group(5)):00"
-RULENAME="time_r2g",EXTRACTION="%reDateWord (wird )(um )(%reTimeHour) (Uhr)",NORM_VALUE="%normDateWord(group(1))T%normDay(group(4)):00"
+RULENAME="time_r2g",EXTRACTION="%reDateWord (wird )?(um )(%reTimeHour)( h| Uhr|h|Uhr)",NORM_VALUE="%normDateWord(group(1))T%normDay(group(4)):00"
 RULENAME="time_r2h",EXTRACTION="%reDateWord (%rePartOfDay)? (um)? %reTimeHour(h|Uhr)",NORM_VALUE="%normDateWord(group(1))T%normDay(group(4)):00"
 
 ///////////////////////////
@@ -58,11 +58,12 @@ RULENAME="time_r2h",EXTRACTION="%reDateWord (%rePartOfDay)? (um)? %reTimeHour(h|
 // EXAMPLE r3b_1: 14 Uhr 30
 // EXAMPLE r3c_1: 15 Uhr
 // EXAMPLE r3c2_1: 15.15 Uhr
+// EXAMPLE r3c3_1: #22h oder #22Uhr
 RULENAME="time_r3a",EXTRACTION="(%reApproximate )?%reTimeHour:%reTimeMinute( Uhr| h)?",NORM_VALUE="UNDEF-this-dayT%normDay(group(3)):group(4)"
 RULENAME="time_r3b",EXTRACTION="(%reApproximate )?%reTimeHour (Uhr|h) %reTimeMinute",NORM_VALUE="UNDEF-this-dayT%normDay(group(3)):group(5)"
 RULENAME="time_r3c",EXTRACTION="(%reApproximate )?%reTimeHour Uhr",NORM_VALUE="UNDEF-this-dayT%normDay(group(3)):00"
 RULENAME="time_r3c2",EXTRACTION="(%reApproximate )?%reTimeHour[\.]%reTimeMinute( Uhr| h)",NORM_VALUE="UNDEF-this-dayT%normDay(group(3)):group(4)"
-
+RULENAME="time_r3c3",EXTRACTION="#%reTimeHour(h|Uhr)([\S]+)?",NORM_VALUE="UNDEF-this-dayT%normDay(group(1)):00"
 RULENAME="time_r3d1",EXTRACTION="(%reApproximate )?%reTimeHourWord Uhr( morgens)?",NORM_VALUE="UNDEF-this-dayT%normDay(group(3)):00"
 RULENAME="time_r3d2",EXTRACTION="(%reApproximate )?%reTimeHourWord Uhr (abends|nachmittags)",NORM_VALUE="UNDEF-this-dayT%SUM%(%normDay(group(3)),12):00"
 RULENAME="time_r3d3",EXTRACTION="(%reApproximate )?%reTimeHourWordAll Uhr",NORM_VALUE="UNDEF-this-dayT%normDay(group(3)):00"
@@ -79,9 +80,11 @@ RULENAME="time_r4b",EXTRACTION="(%reApproximate )?%rePartOfDay (des) (%reDayNumb
 // EXAMPLE r5a-1: (am) Morgen 
 // EXAMPLE r5b-1: nächsten Morgen
 // EXAMPLE r5c-1: (am) Morgen desselben Tages
+// EXAMPLE r5f-1: #Feierabend
 RULENAME="time_r5a",EXTRACTION="(\b[Aa]m) %rePartOfDay",NORM_VALUE="UNDEF-this-dayT%normPartOfDay(group(2))",OFFSET="group(2)-group(2)"
 RULENAME="time_r5b",EXTRACTION="%reThisNextLast %rePartOfDay",NORM_VALUE="UNDEF-%normThisNextLast(group(1))-dayT%normPartOfDay(group(2))"
 RULENAME="time_r5c",EXTRACTION="(de[rm]selben?) %rePartOfDay",NORM_VALUE="UNDEF-REF-day-PLUS-0T%normPartOfDay(group(2))"
 RULENAME="time_r5d",EXTRACTION="%rePartOfDay (desselben|dieses) (Tages)",NORM_VALUE="UNDEF-REF-day-PLUS-0T%normPartOfDay(group(1))"
-RULENAME="time_r5e",EXTRACTION="([Gg]uten?|[Ee]ine?|[Dd]er|[Dd]ie|[Dd]as|[Ss]chönen?|[Rr]uhigen?|[Aa]ngenehmen?) %rePartOfDay",NORM_VALUE="UNDEF-this-dayT%normPartOfDay(group(2))" 
-
+RULENAME="time_r5e",EXTRACTION="([Gg]uten?|[Ee]ine?|[Ss]chönen?|[Rr]uhigen?|[Aa]ngenehmen?) %rePartOfDay",NORM_VALUE="UNDEF-this-dayT%normPartOfDay(group(2))",OFFSET="group(2)-group(2)" 
+RULENAME="time_r5f",EXTRACTION="([\S]+)%rePartOfDay",NORM_VALUE="UNDEF-this-dayT%normPartOfDay(group(2))"
+RULENAME="time_r5e",EXTRACTION="([Dd]er|[Dd]ie|[Dd]as) %rePartOfDay",NORM_VALUE="UNDEF-this-dayT%normPartOfDay(group(2))","POS_CONSTRAINT="group(1):ART:group(2):NN:",OFFSET="group(2)-group(2)" 

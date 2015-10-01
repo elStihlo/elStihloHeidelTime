@@ -27,50 +27,22 @@ public class Pipeline {
 		//String inputFolder = "Test/TwitterData";
 		
 		/*CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
-                BA_TwitterReader.class, BA_TwitterReader.PARAM_INPUTDIR, "F:/Uni/BachelorArbeit/TweetsMitTimeX/TrainingTweets/EinzelTweetsTraining",
-                ACETernReader.PARAM_DCT, true);*/
+                BA_TwitterReader.class, BA_TwitterReader.PARAM_INPUTDIR, "F:/Uni/BachelorArbeit/TweetsMitTimeX/Sample4",
+                BA_TwitterReader.PARAM_DCT, true);*/
 		
 		/*CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
                 BA_TwitterReader.class, BA_TwitterReader.PARAM_INPUTDIR, "F:/Uni/BachelorArbeit/TweetsMitTimeX/TrainingTweets/NochNichtGefunden",
-                ACETernReader.PARAM_DCT, true);*/
-		
-		/*CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
-                BA_TwitterReader.class, BA_TwitterReader.PARAM_INPUTDIR, "F:/Uni/BachelorArbeit/TweetsMitTimeX/EinzelTweets",
-                ACETernReader.PARAM_DCT, true);*/
-		
-		/*CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
-                ACETernReader.class, ACETernReader.PARAM_INPUTDIR, "Test/Tempeval3", ACETernReader.PARAM_DCT, true);*/
+                BA_TwitterReader.PARAM_DCT, true);*/
 		
 		CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
-                BA_TwitterReader.class, BA_TwitterReader.PARAM_INPUTDIR, "Test/Timebank", BA_TwitterReader.PARAM_DCT, true);
+                BA_TwitterReader.class, BA_TwitterReader.PARAM_INPUTDIR, "F:/Uni/BachelorArbeit/TweetsMitTimeX/EinzelTweets",
+                BA_TwitterReader.PARAM_DCT, true);
 		
-		
+			
 		/*CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
-                Tempeval3Reader.class, Tempeval3Reader.PARAM_INPUTDIR, "Test/Tempeval3");*/
+                BA_TwitterReader.class, BA_TwitterReader.PARAM_INPUTDIR, "Test/Timebank", BA_TwitterReader.PARAM_DCT, true);*/
 		
-		// Read all files with file ending *.gz, *.bz2 or *.json that are located in the inputFolder
-        /*CollectionReaderDescription reader = CollectionReaderFactory.createReaderDescription(
-                TwitterReader.class, TwitterReader.PARAM_SOURCE_LOCATION, inputFolder,
-                TwitterReader.PARAM_PATTERNS, new String[] { "*.gz", "*.bz2", "*.json" });
-        */
-        /*AnalysisEngineDescription tokenizer = AnalysisEngineFactory
-                .createEngineDescription(ArktweetTokenizer.class);*/
-		
-		 /*AnalysisEngineDescription segmenter = AnalysisEngineFactory
-	                .createEngineDescription(BreakIteratorSegmenter.class);*/
-		 
-		 /*AnalysisEngineDescription segmenter = AnalysisEngineFactory
-	                .createEngineDescription(OpenNlpSegmenter.class);*/
-		 
-		/* AnalysisEngineDescription tokenTest = AnalysisEngineFactory
-				 .createEngineDescription(TokenTest.class);*/
-		 
-		/* AnalysisEngineDescription dkProTreeTaggerPosTagger = AnalysisEngineFactory
-				 .createEngineDescription(TreeTaggerPosTagger.class);*/
-		 
-		 /*AnalysisEngineDescription dkProOpenNlpPosTagger = AnalysisEngineFactory
-		 .createEngineDescription(OpenNlpPosTagger.class);*/
-		 
+				
 		 /*AnalysisEngineDescription translator = AnalysisEngineFactory
 				 .createEngineDescription(AnnotationTranslator.class, 
 						 AnnotationTranslator.PARAM_DKPRO_TO_HEIDELTIME, false, 
@@ -78,33 +50,33 @@ public class Pipeline {
 		 
 		 
 		 
-		 /*AnalysisEngineDescription treeTagger = AnalysisEngineFactory
-	                .createEngineDescription(TreeTaggerWrapper.class, TreeTaggerWrapper.PARAM_ANNOTATE_PARTOFSPEECH, true,
-	                		TreeTaggerWrapper.PARAM_LANGUAGE, "german", TreeTaggerWrapper.PARAM_ANNOTATE_TOKENS, true,
-	                		TreeTaggerWrapper.PARAM_ANNOTATE_SENTENCES, true, TreeTaggerWrapper.PARAM_IMPROVE_GERMAN_SENTENCES, true);*/
-		 
 		 AnalysisEngineDescription treeTagger = AnalysisEngineFactory
 	                .createEngineDescription(TreeTaggerWrapper.class, TreeTaggerWrapper.PARAM_ANNOTATE_PARTOFSPEECH, true,
-	                		TreeTaggerWrapper.PARAM_LANGUAGE, "english", TreeTaggerWrapper.PARAM_ANNOTATE_TOKENS, true,
-	                		TreeTaggerWrapper.PARAM_ANNOTATE_SENTENCES, true, TreeTaggerWrapper.PARAM_IMPROVE_GERMAN_SENTENCES, false);
+	                		TreeTaggerWrapper.PARAM_LANGUAGE, "german", TreeTaggerWrapper.PARAM_ANNOTATE_TOKENS, true,
+	                		TreeTaggerWrapper.PARAM_ANNOTATE_SENTENCES, true, TreeTaggerWrapper.PARAM_IMPROVE_GERMAN_SENTENCES, true);
 		 
-		 AnalysisEngineDescription heidelTime = AnalysisEngineFactory
+		 /*AnalysisEngineDescription treeTagger = AnalysisEngineFactory
+	                .createEngineDescription(TreeTaggerWrapper.class, TreeTaggerWrapper.PARAM_ANNOTATE_PARTOFSPEECH, true,
+	                		TreeTaggerWrapper.PARAM_LANGUAGE, "english", TreeTaggerWrapper.PARAM_ANNOTATE_TOKENS, true,
+	                		TreeTaggerWrapper.PARAM_ANNOTATE_SENTENCES, true, TreeTaggerWrapper.PARAM_IMPROVE_GERMAN_SENTENCES, false);*/
+		 
+		 /*AnalysisEngineDescription heidelTime = AnalysisEngineFactory
 	                .createEngineDescription(HeidelTime.class, HeidelTime.PARAM_LANGUAGE, "english", HeidelTime.PARAM_DATE, true,
 	                		HeidelTime.PARAM_DURATION, true, HeidelTime.PARAM_SET, true, HeidelTime.PARAM_TIME, true,
-	                		HeidelTime.PARAM_TYPE_TO_PROCESS, "news", HeidelTime.PARAM_DEBUG, true, HeidelTime.PARAM_GROUP, true);
-		 
-		 AnalysisEngineDescription writer = AnalysisEngineFactory
-				 .createEngineDescription(BA_Writer.class);
+	                		HeidelTime.PARAM_TYPE_TO_PROCESS, "news", HeidelTime.PARAM_DEBUG, true, HeidelTime.PARAM_GROUP, true);*/
 		 
 		 
-		/* AnalysisEngineDescription heidelTime = AnalysisEngineFactory
+		 
+		 
+		 AnalysisEngineDescription heidelTime = AnalysisEngineFactory
 	                .createEngineDescription(HeidelTime.class, HeidelTime.PARAM_LANGUAGE, "germancoll", HeidelTime.PARAM_DATE, true,
 	                		HeidelTime.PARAM_DURATION, true, HeidelTime.PARAM_SET, true, HeidelTime.PARAM_TIME, true,
 	                		HeidelTime.PARAM_TYPE_TO_PROCESS, "colloquial", HeidelTime.PARAM_DEBUG, true, HeidelTime.PARAM_GROUP, true);
 		 
 		 AnalysisEngineDescription writer = AnalysisEngineFactory
-				 .createEngineDescription(TwitterWriter.class);*/
-		
+				 .createEngineDescription(BA_Writer.class);
+		 
+		 		
 		
 		//SimplePipeline.runPipeline(reader, writer);
 		SimplePipeline.runPipeline(reader, treeTagger, heidelTime, writer);
