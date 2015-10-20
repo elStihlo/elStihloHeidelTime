@@ -145,15 +145,9 @@ public class TreeTaggerWrapper extends JCasAnnotator_ImplBase {
 		// set some configuration based upon these values
 		ttprops.languageName = language.getTreeTaggerLangName();
 		if(ttprops.rootPath == null)
-			
-			//Hier ist Testgelaende!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			
-			//ttprops.rootPath = System.getenv("TREETAGGER_HOME");
-			
-			
-			ttprops.rootPath = "C:/Program Files (x86)/TreeTagger";
-		
-		
+
+		ttprops.rootPath = System.getenv("TREETAGGER_HOME");
+
 		ttprops.tokScriptName = "utf8-tokenize.perl";
 		
 		// parameter file

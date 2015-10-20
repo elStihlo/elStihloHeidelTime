@@ -96,19 +96,19 @@
       <nameValuePair>
         <name>Debugging</name>
         <value>
-          <boolean>false</boolean>
+          <boolean>true</boolean>
         </value>
       </nameValuePair>
       <nameValuePair>
         <name>Type</name>
         <value>
-          <string>news</string>
+          <string>colloquial</string>
         </value>
       </nameValuePair>
       <nameValuePair>
         <name>Language</name>
         <value>
-          <string>english</string>
+          <string>germancoll</string>
         </value>
       </nameValuePair>
     <nameValuePair>

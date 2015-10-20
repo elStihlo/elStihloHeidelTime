@@ -27,7 +27,11 @@ import de.tudarmstadt.ukp.dkpro.core.api.io.JCasResourceCollectionReader_ImplBas
 import de.unihd.dbs.uima.types.heideltime.Dct;
 
 
-
+/**
+ * CollectionReader vor TwitterRawStream Data 
+ * Reads TwitterRawStream Data, stores DCT
+ * @author Christian Aldenhoff 
+ */
 public class TwitterReader extends JCasResourceCollectionReader_ImplBase{
 
 	public static final String PARAM_ENCODING = "encoding";

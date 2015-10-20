@@ -39,7 +39,8 @@ import de.unihd.dbs.uima.types.heideltime.SourceDocInfo;
 
 
 /**
- * CollectionReader for ACE Tern Data 
+ * CollectionReader based on the ACETernReader 
+ * modified by Christian Aldenhoff to read Goldstandard as well
  */
 public class BA_TwitterReader extends CollectionReader_ImplBase {
 	
@@ -123,6 +124,8 @@ public class BA_TwitterReader extends CollectionReader_ImplBase {
 		}
 		
 		try {
+			
+			// Read Goldstandard Timex3
 			File datei = (File) mFiles.get(currentIndex);
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
@@ -182,13 +185,6 @@ public class BA_TwitterReader extends CollectionReader_ImplBase {
 
 	    // put document into CAS
 	    text = text.replaceAll("(?s)<QUOTE PREVIOUSPOST=.*?/>", "");
-	    /*text = text.replaceAll("ü", "&amp;#252");
-	    text = text.replaceAll("Ü", "&amp;#214");
-	    text = text.replaceAll("Ä", "&amp;#196");
-	    text = text.replaceAll("ä", "&amp;#228");
-	    text = text.replaceAll("Ö", "Oe");
-	    text = text.replaceAll("ö", "&amp;#246");
-	    text = text.replaceAll("ß", "&amp;#223");*/
 	    
 	    //text = text.split("<TEXT>")[1].split("</TEXT>")[0];
 	    //jcas.setDocumentText(text);

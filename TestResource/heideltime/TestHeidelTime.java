@@ -41,12 +41,12 @@ public class TestHeidelTime {
 			tagEngine.process(jcas);
 			
 			
-			AnalysisEngineDescription heidelTime = AnalysisEngineFactory
+			/*AnalysisEngineDescription heidelTime = AnalysisEngineFactory
 	                .createEngineDescription(HeidelTime.class, HeidelTime.PARAM_LANGUAGE, "germancoll", HeidelTime.PARAM_DATE, true,
 	                		HeidelTime.PARAM_DURATION, true, HeidelTime.PARAM_SET, true, HeidelTime.PARAM_TIME, true,
 	                		HeidelTime.PARAM_TYPE_TO_PROCESS, "colloquial", HeidelTime.PARAM_DEBUG, true, HeidelTime.PARAM_GROUP, true);
 			AnalysisEngine hTEngine = AnalysisEngineFactory.createEngine(heidelTime);
-			hTEngine.process(jcas);
+			hTEngine.process(jcas);*/
 			
 			Timex3 t = JCasUtil.selectSingle(jcas, Timex3.class);
 			Collection<Token> s = JCasUtil.select(jcas, Token.class);

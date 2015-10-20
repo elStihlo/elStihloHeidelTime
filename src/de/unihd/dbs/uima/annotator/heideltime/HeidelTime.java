@@ -74,9 +74,9 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 	private int timexID = 0;
 	
 	// INPUT PARAMETER HANDLING WITH UIMA
-	public static String PARAM_LANGUAGE         = "Language";
+	public String PARAM_LANGUAGE         = "Language";
 	// supported languages (2012-05-19): english, german, dutch, englishcoll, englishsci
-	public static String PARAM_TYPE_TO_PROCESS  = "Type";
+	public String PARAM_TYPE_TO_PROCESS  = "Type";
 	// chosen locale parameter name
 	private String PARAM_LOCALE			   = "locale";
 	// supported types (2012-05-19): news (english, german, dutch), narrative (english, german, dutch), colloquial
@@ -84,12 +84,12 @@ public class HeidelTime extends JCasAnnotator_ImplBase {
 	private String typeToProcess  = "news";
 	
 	// INPUT PARAMETER HANDLING WITH UIMA (which types shall be extracted)
-	public static String PARAM_DATE      = "Date";
-	public static String PARAM_TIME      = "Time";
-	public static String PARAM_DURATION  = "Duration";
-	public static String PARAM_SET       = "Set";
-	public static String PARAM_DEBUG	   = "Debugging";
-	public static String PARAM_GROUP     = "ConvertDurations";
+	public String PARAM_DATE      = "Date";
+	public String PARAM_TIME      = "Time";
+	public String PARAM_DURATION  = "Duration";
+	public String PARAM_SET       = "Set";
+	public String PARAM_DEBUG	   = "Debugging";
+	public String PARAM_GROUP     = "ConvertDurations";
 	private Boolean find_dates     = true;
 	private Boolean find_times     = true;
 	private Boolean find_durations = true;

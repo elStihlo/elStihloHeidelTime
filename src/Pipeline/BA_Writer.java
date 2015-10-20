@@ -15,7 +15,8 @@ import de.unihd.dbs.uima.types.heideltime.Timex3;
 
 
 /**
- *  
+ *  Writer for evaluating the annotation result
+ *  @author Christian Aldenhoff
  */
 
 public class BA_Writer extends JCasAnnotator_ImplBase{
@@ -54,19 +55,19 @@ public class BA_Writer extends JCasAnnotator_ImplBase{
 		nrTimes = 0;
 		for (Timex3 timex3 : timex){
 			nrTimes++;
-			System.out.println(" Timex3 Value: " + timex3.getTimexValue());
+			/*System.out.println(" Timex3 Value: " + timex3.getTimexValue());
 			System.out.println(" Timex3Text: " + timex3.getCoveredText());
 			System.out.println(" Timex3Type: " + timex3.getTimexType());
-			System.out.println(" Timex3ID: " + timex3.getTimexId());			
+			System.out.println(" Timex3ID: " + timex3.getTimexId());	*/		
 		}
 		nrGoldTimes = 0;
 		for (Timex3Gold go : gold){
 			nrGoldTimes++;
-			System.out.println(" GoldValue: " + go.getValue());
+			/*System.out.println(" GoldValue: " + go.getValue());
 			System.out.println(" GoldText: " + go.getTimex3Text());
 			System.out.println(" GoldType: " + go.getTimex3type());
 			System.out.println(" GoldID: " + go.getTID());
-			System.out.println("- - - - - - - - - - - - -");
+			System.out.println("- - - - - - - - - - - - -");*/
 		}
 		correct = 0;
 		
