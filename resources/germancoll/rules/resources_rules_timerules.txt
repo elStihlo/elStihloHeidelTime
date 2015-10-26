@@ -87,4 +87,4 @@ RULENAME="time_r5c",EXTRACTION="(de[rm]selben?) %rePartOfDay",NORM_VALUE="UNDEF-
 RULENAME="time_r5d",EXTRACTION="%rePartOfDay (desselben|dieses) (Tages)",NORM_VALUE="UNDEF-REF-day-PLUS-0T%normPartOfDay(group(1))"
 RULENAME="time_r5e",EXTRACTION="([Gg]uten?|[Ee]ine?|[Ss]chönen?|[Rr]uhigen?|[Aa]ngenehmen?) %rePartOfDay",NORM_VALUE="UNDEF-this-dayT%normPartOfDay(group(2))",OFFSET="group(2)-group(2)" 
 RULENAME="time_r5f",EXTRACTION="([\S]+)%rePartOfDay",NORM_VALUE="UNDEF-this-dayT%normPartOfDay(group(2))"
-RULENAME="time_r5e",EXTRACTION="([Dd]er|[Dd]ie|[Dd]as) %rePartOfDay",NORM_VALUE="UNDEF-this-dayT%normPartOfDay(group(2))","POS_CONSTRAINT="group(1):ART:group(2):NN:",OFFSET="group(2)-group(2)" 
+RULENAME="time_r5g",EXTRACTION="([Dd]er|[Dd]ie|[Dd]as) %rePartOfDay",NORM_VALUE="UNDEF-this-dayT%normPartOfDay(group(2))","POS_CONSTRAINT="group(1):ART:group(2):NN:",OFFSET="group(2)-group(2)" 

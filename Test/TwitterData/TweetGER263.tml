@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><TimeML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://timeml.org/timeMLdocs/TimeML_1.2.1.xsd"><DOCID>TweetGER263</DOCID><DCT><TIMEX3 tid="t0" value="2015-02-02T14:55:13" temporalFunction="false" functionInDocument="CREATION_TIME" >Mon Feb 02 14:55:13 +0000 2015</TIMEX3></DCT><TEXT>Moderatoren gesucht !
+Wie ihr <TIMEX3 tid="t1" type="DATE" value="2015-02-02" anchorTimeID="t0">heute</TIMEX3> gesehen habt, gab es keine Meldungen...
+Wir sind zwar ein paar Moderatoren... http://t.co/o4sbLpLZjI</TEXT></TimeML>

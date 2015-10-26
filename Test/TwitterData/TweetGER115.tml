@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><TimeML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://timeml.org/timeMLdocs/TimeML_1.2.1.xsd"><DOCID>TweetGER115</DOCID><DCT><TIMEX3 tid="t0" value="2015-02-05T23:20:39" temporalFunction="false" functionInDocument="CREATION_TIME" >Thu Feb 05 23:20:39 +0000 2015</TIMEX3></DCT><TEXT>RT @Bibinator199: @BibisBeauty  #HappyBirthdayBibi
+<TIMEX3 tid="t1" type="DURATION" value="P22Y">22jahre</TIMEX3>?
+Wir haben dich schon <TIMEX3 tid="t2" type="DURATION" value="P3Y">3jahre</TIMEX3> begleitet
+Und werden es weitere <TIMEX3 tid="t3" type="DURATION" value="P100Y">100jahre</TIMEX3> tuhen http…</TEXT></TimeML>

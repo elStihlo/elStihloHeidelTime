@@ -74,3 +74,5 @@
 "Ab Sofort","PRESENT_REF"
 "Ab sofort","PRESENT_REF"
 "ab Sofort","PRESENT_REF"
+"Asap","FUTURE_REF"
+"asap","FUTURE_REF"

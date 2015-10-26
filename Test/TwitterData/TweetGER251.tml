@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><TimeML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://timeml.org/timeMLdocs/TimeML_1.2.1.xsd"><DOCID>TweetGER251</DOCID><DCT><TIMEX3 tid="t0" value="2015-02-26T15:09:42" temporalFunction="false" functionInDocument="CREATION_TIME" >Thu Feb 26 15:09:42 +0000 2015</TIMEX3></DCT><TEXT>RT @dagibee: Habt Ihr <TIMEX3 tid="t1" type="DATE" value="2015-02-26" anchorTimeID="t0">heute</TIMEX3> schon für mich für den #KCA gevotet ? ? ZUSAMMEN packen wir alles ?
+
+? http://t.co/JeYKJ08LtS ?
+
+oder mit : #KC…</TEXT></TimeML>

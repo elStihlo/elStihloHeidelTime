@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><TimeML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://timeml.org/timeMLdocs/TimeML_1.2.1.xsd"><DOCID>TweetGER106</DOCID><DCT><TIMEX3 tid="t0" value="2015-02-01T18:02:08" temporalFunction="false" functionInDocument="CREATION_TIME" >Sun Feb 01 18:02:08 +0000 2015</TIMEX3></DCT><TEXT>RT @_19yay_: ALTER ICH RASTE <TIMEX3 tid="t1" type="DATE" value="PRESENT_REF" anchorTimeId="t0">GERADE</TIMEX3> AUS
+
+SCHAUT EUCH DAS MAL AN
+@julienco_ @BibisBeauty 
+
+NE KOMM IM ERNST?
+
+Beauty YouTube AIDS: http://t.…</TEXT></TimeML>

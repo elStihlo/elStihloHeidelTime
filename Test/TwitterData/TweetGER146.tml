@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><TimeML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://timeml.org/timeMLdocs/TimeML_1.2.1.xsd"><DOCID>TweetGER146</DOCID><DCT><TIMEX3 tid="t0" value="2015-02-23T23:04:41" temporalFunction="false" functionInDocument="CREATION_TIME" >Mon Feb 23 23:04:41 +0000 2015</TIMEX3></DCT><TEXT>RT @PatSnowpaw: Wer von Ihnen ist das <TIMEX3 tid="t1" type="DATE" value="PRESENT_REF" anchorTimeId="t0">jetzt</TIMEX3> schon wieder?
+
+Inspiriert zur Google Suche von @ste_fino :D 
+
+Fragen sie nicht.. http://t.co/KZ…</TEXT></TimeML>
